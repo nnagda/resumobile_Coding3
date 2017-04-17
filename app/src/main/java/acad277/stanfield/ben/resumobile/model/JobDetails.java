@@ -1,5 +1,7 @@
 package acad277.stanfield.ben.resumobile.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by nayleenagda on 4/16/17.
  */
@@ -10,6 +12,9 @@ public class JobDetails {
     String positionDescrption;
     int startYear;
     int endYear;
+
+
+
 
     public String getJobName() {
         return jobName;

@@ -48,7 +48,7 @@ public class Job_edit extends AppCompatActivity {
         //Adding to the array // test values
         JobDetails testJob= new JobDetails();
 
-        testJob.getJobName();
+        testJob.setPositionDescrption("test");
         testJob.setPositionDescrption("Being lazy");
         testJob.setPositionName("Best student");
 

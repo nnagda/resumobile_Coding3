@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
 import acad277.stanfield.ben.resumobile.model.coverLetterDetails;
+import acad277.stanfield.ben.resumobile.model.jobModel;
 
 
 public class LinkedIn_data extends AppCompatActivity {
@@ -35,25 +36,22 @@ public class LinkedIn_data extends AppCompatActivity {
 
     private ArrayList<JobDetails> arrayJob;
     private JobAdapter jobAdapter;
-
-
-
-
-
+    private jobModel myJobModel;
 
     coverLetterDetails testCoverLetterDetails= new coverLetterDetails();
     JobDetails testJob= new JobDetails();
+    JobDetails testJob2= new JobDetails();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linked_in_data);
 
+
+        myJobModel=jobModel.get(this);
+
         //Setting up the list view
-        arrayJob = new ArrayList<>();
-
-
-
+        arrayJob = jobModel.get(this).getJobs();
 
 
         editCoverLetter=(Button)findViewById(R.id.buttonEditCoverLetter);
@@ -77,9 +75,17 @@ public class LinkedIn_data extends AppCompatActivity {
         testJob.setPositionDescrption("Being lazy");
         testJob.setPositionName("Best student");
 
+        testJob2.setJobName("Student2");
+        testJob2.setPositionDescrption("Being lazy2");
+        testJob2.setPositionName("Best student2");
+
+
+        arrayJob.add(testJob);
+        arrayJob.add(testJob2);
+
+
         //i.putExtra(JOB_DETAIL,testJob);
         //String jobString=(String)jobs.ge();
-
 
 
 
@@ -88,8 +94,8 @@ public class LinkedIn_data extends AppCompatActivity {
 
 
 
-        Intent i= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
-        i.putExtra(COVER_DETAILS,testCoverLetterDetails);
+        Intent ib= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
+        ib.putExtra(COVER_DETAILS,testCoverLetterDetails);
 
         String coverLetterString=(String)coverLetter.getText();
         testCoverLetterDetails.setCoverLetterText(coverLetterString);
@@ -97,16 +103,10 @@ public class LinkedIn_data extends AppCompatActivity {
         startActivityForResult(i,1);
 
 
-
-
-
-
-
-
         jobAdapter = new JobAdapter(arrayJob);
         jobs.setAdapter(jobAdapter);
-        arrayJob.add(testJob);
-        //Toast.makeText(getApplicationContext(), "Length is" + arrayJob.size(), Toast.LENGTH_SHORT).show();
+
+
 
 
 
