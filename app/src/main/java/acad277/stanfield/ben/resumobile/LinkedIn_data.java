@@ -77,7 +77,7 @@ public class LinkedIn_data extends AppCompatActivity {
         testJob.setPositionDescrption("Being lazy");
         testJob.setPositionName("Best student");
 
-        i.putExtra(JOB_DETAIL,testJob);
+        //i.putExtra(JOB_DETAIL,testJob);
         //String jobString=(String)jobs.ge();
 
 
