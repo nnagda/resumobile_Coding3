@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Job Name"
+        android:layout_width="197dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_jobName" />
+
+    <TextView
+        android:text="Position Name"
+        android:layout_width="194dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_position" />
+
+    <TextView
+        android:text="Job Description"
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_description" />
+</LinearLayout>
