@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
+import acad277.stanfield.ben.resumobile.model.jobModel;
 
 public class Job_edit extends AppCompatActivity {
 
@@ -29,6 +30,9 @@ public class Job_edit extends AppCompatActivity {
 
     private ArrayList<JobDetails> arrayJob;
     private JobAdapter jobAdapter;
+    private jobModel myJobModel;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,8 @@ public class Job_edit extends AppCompatActivity {
         setContentView(R.layout.activity_job_edit);
 
         //for the list view
-        arrayJob = new ArrayList<>();
+        myJobModel=jobModel.get(this);
+        arrayJob = jobModel.get(this).getJobs();
 
         addJob=(Button)findViewById(R.id.buttonAddJob);
         deleteJob=(Button)findViewById(R.id.buttonDeleteJob);
@@ -45,16 +50,20 @@ public class Job_edit extends AppCompatActivity {
 
         jobAdapter = new JobAdapter(arrayJob);
 
+        jobs.setAdapter(jobAdapter);
         //Adding to the array // test values
         JobDetails testJob= new JobDetails();
 
-        testJob.setPositionDescrption("test");
-        testJob.setPositionDescrption("Being lazy");
-        testJob.setPositionName("Best student");
-
-
-        jobs.setAdapter(jobAdapter);
         arrayJob.add(testJob);
+
+
+
+        testJob.setPositionDescrption("test3");
+        testJob.setPositionDescrption("Being lazy3");
+        testJob.setPositionName("Best student3");
+
+
+
 
 
 
