@@ -15,7 +15,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
+import acad277.stanfield.ben.resumobile.model.coverLetterDetails;
 import acad277.stanfield.ben.resumobile.model.jobModel;
+
+import static android.R.attr.data;
+import static android.R.attr.focusable;
 
 public class Job_edit extends AppCompatActivity {
 
@@ -77,13 +81,8 @@ public class Job_edit extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
-                //private jobModel myJobModel;
-//
                 finish();
+
             }
         });
 
