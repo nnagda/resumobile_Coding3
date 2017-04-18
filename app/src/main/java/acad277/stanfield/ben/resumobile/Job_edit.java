@@ -54,15 +54,6 @@ public class Job_edit extends AppCompatActivity {
         //Adding to the array // test values
         JobDetails testJob= new JobDetails();
 
-        arrayJob.add(testJob);
-
-
-
-        testJob.setPositionDescrption("test3");
-        testJob.setPositionDescrption("Being lazy3");
-        testJob.setPositionName("Best student3");
-
-
 
 
 
@@ -86,6 +77,12 @@ public class Job_edit extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+
+                //private jobModel myJobModel;
+//
                 finish();
             }
         });

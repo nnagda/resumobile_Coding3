@@ -23,7 +23,7 @@ import acad277.stanfield.ben.resumobile.model.jobModel;
 public class LinkedIn_data extends AppCompatActivity {
 
     public static final String COVER_DETAILS=Cover_Letter_Edit.COVER_LETTER;
-    public static final String JOB_DETAIL=Job_edit.JOB_DETAIL;
+
 
     Button editCoverLetter;
     Button editJob;
@@ -83,25 +83,15 @@ public class LinkedIn_data extends AppCompatActivity {
         arrayJob.add(testJob);
         arrayJob.add(testJob2);
 
-
-        //i.putExtra(JOB_DETAIL,testJob);
-        //String jobString=(String)jobs.ge();
-
-
-
         //how to put list view in intent
 
-
-
-
-        Intent ib= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
-        ib.putExtra(COVER_DETAILS,testCoverLetterDetails);
+        Intent ia= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
+        ia.putExtra(COVER_DETAILS,testCoverLetterDetails);
 
         String coverLetterString=(String)coverLetter.getText();
         testCoverLetterDetails.setCoverLetterText(coverLetterString);
 
         startActivityForResult(i,1);
-
 
         jobAdapter = new JobAdapter(arrayJob);
         jobs.setAdapter(jobAdapter);

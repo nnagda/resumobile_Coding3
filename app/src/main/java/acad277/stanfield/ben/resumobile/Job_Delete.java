@@ -1,18 +1,34 @@
 package acad277.stanfield.ben.resumobile;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import acad277.stanfield.ben.resumobile.model.JobDetails;
+import acad277.stanfield.ben.resumobile.model.jobModel;
 
 public class Job_Delete extends AppCompatActivity {
     Button save;
     Button goBack;
     ListView jobs;
 
+    private ArrayList<JobDetails> arrayJob;
+    private jobModel myJobModel;
+    private JobAdapter jobAdapter;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job__delete);
 
@@ -21,10 +37,36 @@ public class Job_Delete extends AppCompatActivity {
         jobs=(ListView)findViewById(R.id.list_jobs);
 
 
+        myJobModel=jobModel.get(this);
+        arrayJob = jobModel.get(this).getJobs();
+
+
+        jobAdapter = new JobAdapter(arrayJob);
+        jobs.setAdapter(jobAdapter);
+
+
+
+        //deleting the row
+        jobs.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+                //this is row that user clicked
+                arrayJob.remove(position);
+                jobAdapter.notifyDataSetChanged();
+            }
+        });
+
+
+
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent i= new Intent(getApplicationContext(),Job_edit.class);
+                startActivityForResult(i,2);
+
+
 
 
             }
@@ -36,6 +78,40 @@ public class Job_Delete extends AppCompatActivity {
                 finish();
             }
         });
+
+    }
+    private class JobAdapter extends ArrayAdapter<JobDetails> {
+        ArrayList<JobDetails> arrayJob= new ArrayList<>();
+
+        public JobAdapter(ArrayList<JobDetails> arrayJob){
+            super(getApplicationContext(), 0, arrayJob);
+            this.arrayJob = arrayJob;
+
+        }
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if (convertView == null){
+                convertView = getLayoutInflater().inflate(R.layout.list_row_jobs,null);
+            }
+
+            JobDetails testJob = arrayJob.get(position);
+
+
+
+            //references to each view within the list row
+            TextView jobName = (TextView) convertView.findViewById(R.id.textView_jobName);
+            TextView positionName = (TextView) convertView.findViewById(R.id.textView_position);
+            TextView jobDescription  =(TextView) convertView.findViewById(R.id.textView_description);
+
+
+            // loads the data from the object into the view
+            jobName.setText(testJob.getJobName());
+            positionName.setText(testJob.getPositionName());
+            jobDescription.setText(testJob.getPositionDescrption());
+
+            return convertView;
+        }
 
     }
 }
