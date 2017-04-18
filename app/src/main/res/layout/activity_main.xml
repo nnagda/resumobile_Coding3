@@ -11,6 +11,8 @@
     tools:context="acad277.stanfield.ben.resumobile.MainActivity"
     >
 
+
+    <!--testing github-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
