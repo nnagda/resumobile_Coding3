@@ -11,9 +11,10 @@
         <ListView
             android:layout_width="match_parent"
             android:id="@+id/ListView_jobs"
-            android:layout_height="200dp">
-
-
+            android:layout_height="500dp"
+            android:background="#eeeeee"
+            android:padding="0dp"
+            android:layout_margin="15dp">
         </ListView>
 
 
@@ -39,6 +40,7 @@
                 android:text="DELETE JOB"
                 android:id="@+id/buttonDeleteJob"
                 android:layout_weight="1"
+                android:padding="@dimen/button_padding"
                 />
 
             <Button
@@ -47,6 +49,7 @@
                 android:text="ADD JOB"
                 android:id="@+id/buttonAddJob"
                 android:layout_weight="1"
+                android:padding="@dimen/button_padding"
                 />
         </LinearLayout>
 
@@ -58,6 +61,7 @@
             android:layout_below="@id/buttonSplit"
             android:textColor="#ffffff"
             android:backgroundTint="#f79146"
+            android:padding="@dimen/button_padding"
             />
 
     </RelativeLayout>

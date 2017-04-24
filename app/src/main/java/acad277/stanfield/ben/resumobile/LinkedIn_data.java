@@ -71,13 +71,13 @@ public class LinkedIn_data extends AppCompatActivity {
         //Adding to the array // test values
         Intent i= new Intent(getApplicationContext(), Job_edit.class);
 
-        testJob.setJobName("Student");
-        testJob.setPositionDescrption("Being lazy");
-        testJob.setPositionName("Best student");
+        testJob.setJobName("Bonsai");
+        testJob.setPositionDescrption("Worked as a product designer at Bonsai AI, an Artificial Intelligence startup.");
+        testJob.setPositionName("Design Intern");
 
-        testJob2.setJobName("Student2");
-        testJob2.setPositionDescrption("Being lazy2");
-        testJob2.setPositionName("Best student2");
+        testJob2.setJobName("Google");
+        testJob2.setPositionDescrption("Worked as a designer at Blogger, a blog platform owned by Google.");
+        testJob2.setPositionName("Intern");
 
 
         arrayJob.add(testJob);
