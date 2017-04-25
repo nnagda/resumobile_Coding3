@@ -79,11 +79,8 @@ public class LinkedIn_data extends AppCompatActivity {
         testJob2.setPositionDescrption("Worked as a designer at Blogger, a blog platform owned by Google.");
         testJob2.setPositionName("Intern");
 
-
         arrayJob.add(testJob);
         arrayJob.add(testJob2);
-
-        //how to put list view in intent
 
         Intent ia= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
         ia.putExtra(COVER_DETAILS,testCoverLetterDetails);
@@ -91,13 +88,8 @@ public class LinkedIn_data extends AppCompatActivity {
         String coverLetterString=(String)coverLetter.getText();
         testCoverLetterDetails.setCoverLetterText(coverLetterString);
 
-        startActivityForResult(i,1);
-
         jobAdapter = new JobAdapter(arrayJob);
         jobs.setAdapter(jobAdapter);
-
-
-
 
 
         //Set  LinkedIn text.

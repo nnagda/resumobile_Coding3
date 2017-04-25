@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,7 @@ import acad277.stanfield.ben.resumobile.model.jobModel;
 
 import static android.R.attr.data;
 import static android.R.attr.focusable;
+import static android.R.attr.inflatedId;
 
 public class Job_edit extends AppCompatActivity {
 
@@ -35,6 +37,8 @@ public class Job_edit extends AppCompatActivity {
     private ArrayList<JobDetails> arrayJob;
     private JobAdapter jobAdapter;
     private jobModel myJobModel;
+
+    int indicator;
 
 
 
@@ -59,6 +63,9 @@ public class Job_edit extends AppCompatActivity {
         JobDetails testJob= new JobDetails();
 
 
+        indicator=getIntent().getIntExtra("fromJobAdd",0);
+        Log.d("INDICATOR in onCreate: ", Integer.toString(indicator));
+
 
 
 
@@ -81,7 +88,17 @@ public class Job_edit extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Log.d("INDICATOR in save: ", Integer.toString(indicator));
+//
+//                if(indicator==1){
+//                    Log.d("indicator inside", "");
+//                    Intent i= new Intent(getApplicationContext(),LinkedIn_data.class);
+//                    startActivityForResult(i,1);
+//
+//                }
                 finish();
+
+
 
             }
         });
@@ -121,6 +138,19 @@ public class Job_edit extends AppCompatActivity {
 
             return convertView;
         }
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 5) {
+            Log.d("....", "coming back from job add");
+            jobAdapter.notifyDataSetChanged();
+            for(JobDetails d : arrayJob) {
+                Log.d("name: ",  d.getJobName());
+            }
+
+        }
+
 
     }
 }

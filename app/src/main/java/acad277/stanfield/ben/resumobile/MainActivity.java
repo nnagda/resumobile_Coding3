@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.linkedin.platform.LISessionManager;
+import com.linkedin.platform.errors.LIAuthError;
+import com.linkedin.platform.listeners.AuthListener;
+import com.linkedin.platform.utils.Scope;
+
 public class MainActivity extends AppCompatActivity {
     Button login;
 
@@ -22,13 +27,51 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getApplicationContext(),LinkedIn_data.class);
-                startActivityForResult(i,0);
+
+                LISessionManager.getInstance(getApplicationContext()).init(MainActivity.this, buildScope(), new AuthListener() {
+                    @Override
+                    public void onAuthSuccess() {
+                        Toast.makeText(getApplicationContext(),"You need to log in!",Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onAuthError(LIAuthError error) {
+                        Toast.makeText(getApplicationContext(),"You are logged in!",Toast.LENGTH_SHORT).show();
+                        Intent i= new Intent(getApplicationContext(),LinkedIn_data.class);
+                        startActivityForResult(i,0);
+                    }
+                }, true);
+
+
+
+
 
             }
         });
 
+
+
+
+    }
+    private static Scope buildScope() {
+        return Scope.build(Scope.R_BASICPROFILE, Scope.W_SHARE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Add this line to your existing onActivityResult() method
+        LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
+
+
+
+
     }
 
 
-}
+
+
+    }
+
+
+

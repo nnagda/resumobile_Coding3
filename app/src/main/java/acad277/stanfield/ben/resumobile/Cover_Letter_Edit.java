@@ -31,6 +31,7 @@ public class Cover_Letter_Edit extends AppCompatActivity {
         coverLetterText=(EditText)findViewById(R.id.EditText_CoverLetter);
 
 
+
         //Receiving the cover letter intent from LinkedIn_data
         Intent i= getIntent();
         final coverLetterDetails testCoverLetterDetails=(coverLetterDetails) i.getSerializableExtra(LinkedIn_data.COVER_DETAILS);

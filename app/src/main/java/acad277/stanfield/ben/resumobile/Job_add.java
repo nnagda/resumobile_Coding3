@@ -65,8 +65,8 @@ public class Job_add extends AppCompatActivity {
                 arrayJob.add(testJob);
 
 
-                Intent i= new Intent(getApplicationContext(),Job_edit.class);
-                startActivityForResult(i,2);
+                finish();
+
 
 
             }
