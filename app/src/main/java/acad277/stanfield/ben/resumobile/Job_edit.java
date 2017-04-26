@@ -44,8 +44,12 @@ public class Job_edit extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_edit);
+
+
 
         //for the list view
         myJobModel=jobModel.get(this);
@@ -88,14 +92,7 @@ public class Job_edit extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.d("INDICATOR in save: ", Integer.toString(indicator));
-//
-//                if(indicator==1){
-//                    Log.d("indicator inside", "");
-//                    Intent i= new Intent(getApplicationContext(),LinkedIn_data.class);
-//                    startActivityForResult(i,1);
-//
-//                }
+                
                 finish();
 
 
@@ -145,9 +142,11 @@ public class Job_edit extends AppCompatActivity {
         if (requestCode == 5) {
             Log.d("....", "coming back from job add");
             jobAdapter.notifyDataSetChanged();
-            for(JobDetails d : arrayJob) {
-                Log.d("name: ",  d.getJobName());
-            }
+
+
+        }
+        else if(requestCode==6){
+            jobAdapter.notifyDataSetChanged();
 
         }
 

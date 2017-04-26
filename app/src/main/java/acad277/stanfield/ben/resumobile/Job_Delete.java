@@ -54,6 +54,7 @@ public class Job_Delete extends AppCompatActivity {
                 //this is row that user clicked
                 arrayJob.remove(position);
                 jobAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -63,8 +64,8 @@ public class Job_Delete extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getApplicationContext(),Job_edit.class);
-                startActivityForResult(i,2);
+
+                finish();
 
 
 

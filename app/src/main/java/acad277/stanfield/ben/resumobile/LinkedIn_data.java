@@ -15,6 +15,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import android.widget.ArrayAdapter;
 
+import com.linkedin.platform.DeepLinkHelper;
+import com.linkedin.platform.errors.LIDeepLinkError;
+import com.linkedin.platform.listeners.DeepLinkListener;
+
 import acad277.stanfield.ben.resumobile.model.JobDetails;
 import acad277.stanfield.ben.resumobile.model.coverLetterDetails;
 import acad277.stanfield.ben.resumobile.model.jobModel;
@@ -44,6 +48,28 @@ public class LinkedIn_data extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+        DeepLinkHelper deepLinkHelper = DeepLinkHelper.getInstance();
+
+
+        // Open the current user's profile
+        deepLinkHelper.openCurrentProfile(LinkedIn_data.this, new DeepLinkListener() {
+
+            public void onDeepLinkSuccess() {
+                Toast.makeText(getApplicationContext(),"Fail",Toast.LENGTH_SHORT).show();
+            }
+
+
+            public void onDeepLinkError(LIDeepLinkError error) {
+                Toast.makeText(getApplicationContext()," Opens authenticated user's LinkedIn profile directly",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linked_in_data);
 
@@ -92,6 +118,8 @@ public class LinkedIn_data extends AppCompatActivity {
         jobs.setAdapter(jobAdapter);
 
 
+
+
         //Set  LinkedIn text.
         //Currently setting dummy text
         coverLetter.setText("TEST");
@@ -134,6 +162,10 @@ public class LinkedIn_data extends AppCompatActivity {
 
     }
 
+
+
+
+
     private class JobAdapter extends ArrayAdapter<JobDetails>{
         ArrayList<JobDetails> arrayJob= new ArrayList<>();
 
@@ -167,6 +199,8 @@ public class LinkedIn_data extends AppCompatActivity {
             return convertView;
         }
 
+
+
     }
 
 
@@ -180,11 +214,17 @@ public class LinkedIn_data extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+
                 testCoverLetterDetails=(coverLetterDetails) data.getSerializableExtra(COVER_DETAILS);
                 testCoverLetterDetails.setCoverLetterText(testCoverLetterDetails.getCoverLetterText());
                 coverLetter.setText(testCoverLetterDetails.getCoverLetterText());
 
             }
+
+        }
+
+        else if(requestCode==2){
+            jobAdapter.notifyDataSetChanged();
         }
 
 

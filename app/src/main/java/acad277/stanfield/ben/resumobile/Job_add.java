@@ -57,8 +57,6 @@ public class Job_add extends AppCompatActivity {
                 JobDetails testJob= new JobDetails();
 
 
-
-
                 testJob.setJobName(companyName.getText().toString());
                 testJob.setPositionDescrption(positionDescription.getText().toString());
                 testJob.setPositionName(positionName.getText().toString());
