@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
 
 
+
+
             @Override
             public void onClick(View v) {
 
@@ -64,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onApiSuccess(ApiResponse apiResponse) {
                         Toast.makeText(getApplicationContext(),"yes!",Toast.LENGTH_SHORT).show();
+                        Intent i= new Intent(getApplicationContext(),LinkedIn_data.class);
+                        startActivityForResult(i,2);
+
 
                     }
 
@@ -92,18 +97,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static Scope buildScope() {
-        return Scope.build(Scope.R_BASICPROFILE, Scope.W_SHARE);
+
+        //return Scope.build(Scope.R_BASICPROFILE, Scope.W_SHARE);
+        return Scope.build(Scope.R_BASICPROFILE, Scope.R_EMAILADDRESS);
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Add this line to your existing onActivityResult() method
         LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
+        Intent intent = new Intent(MainActivity.this, LinkedIn_data.class);
+        startActivity(intent);
 
 
 
 
     }
+
+
 
 
 

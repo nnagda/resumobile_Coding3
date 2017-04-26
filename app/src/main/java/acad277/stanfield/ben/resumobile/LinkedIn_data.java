@@ -1,5 +1,6 @@
 package acad277.stanfield.ben.resumobile;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,9 +16,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import android.widget.ArrayAdapter;
 
+import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.DeepLinkHelper;
+import com.linkedin.platform.errors.LIApiError;
 import com.linkedin.platform.errors.LIDeepLinkError;
+import com.linkedin.platform.listeners.ApiListener;
+import com.linkedin.platform.listeners.ApiResponse;
 import com.linkedin.platform.listeners.DeepLinkListener;
+
+import org.json.JSONObject;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
 import acad277.stanfield.ben.resumobile.model.coverLetterDetails;
@@ -27,6 +34,11 @@ import acad277.stanfield.ben.resumobile.model.jobModel;
 public class LinkedIn_data extends AppCompatActivity {
 
     public static final String COVER_DETAILS=Cover_Letter_Edit.COVER_LETTER;
+    private static final String host = "api.linkedin.com";
+    private ProgressDialog progress;
+    private static final String url =
+            "https://" + host + "/v1/people/~:" +
+                    "(email-address,formatted-name,headline,phone-numbers,positions:(id,title,summary,start-date,end-date,is-current,company:(id,name,type,size,industry,ticker)))";
 
 
     Button editCoverLetter;
@@ -37,6 +49,8 @@ public class LinkedIn_data extends AppCompatActivity {
     TextView education;
     TextView coverLetter;
     ListView jobs;
+    TextView TextView_Name;
+    TextView TextView_Email;
 
     private ArrayList<JobDetails> arrayJob;
     private JobAdapter jobAdapter;
@@ -48,25 +62,12 @@ public class LinkedIn_data extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        progress= new ProgressDialog(this);
+        progress.setMessage("Retrieving data from LinkedIn...");
+        progress.setCanceledOnTouchOutside(false);
+        progress.show();
 
-
-
-        DeepLinkHelper deepLinkHelper = DeepLinkHelper.getInstance();
-
-
-        // Open the current user's profile
-        deepLinkHelper.openCurrentProfile(LinkedIn_data.this, new DeepLinkListener() {
-
-            public void onDeepLinkSuccess() {
-                Toast.makeText(getApplicationContext(),"Fail",Toast.LENGTH_SHORT).show();
-            }
-
-
-            public void onDeepLinkError(LIDeepLinkError error) {
-                Toast.makeText(getApplicationContext()," Opens authenticated user's LinkedIn profile directly",Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        linkededinApiHelper();
 
 
 
@@ -88,8 +89,9 @@ public class LinkedIn_data extends AppCompatActivity {
         //API will fill these out
         name=(TextView)findViewById(R.id.TextView_Name);
         country=(TextView)findViewById(R.id.TextView_Country);
-        education=(TextView)findViewById(R.id.TextView_Education);
         coverLetter=(TextView)findViewById(R.id.TextView_coverLetter);
+        TextView_Name=(TextView)findViewById(R.id.TextView_Name);
+        TextView_Email=(TextView)findViewById(R.id.TextView_Email);
 
         jobs=(ListView) findViewById(R.id.ListView_jobs);
 
@@ -122,7 +124,7 @@ public class LinkedIn_data extends AppCompatActivity {
 
         //Set  LinkedIn text.
         //Currently setting dummy text
-        coverLetter.setText("TEST");
+        coverLetter.setText("Sample cover letter text.");
 
 
 
@@ -160,6 +162,40 @@ public class LinkedIn_data extends AppCompatActivity {
 
         });
 
+    }
+
+    public void linkededinApiHelper(){
+        APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
+        apiHelper.getRequest(LinkedIn_data.this, url, new ApiListener() {
+            @Override
+            public void onApiSuccess(ApiResponse result) {
+                try {
+                    showResult(result.getResponseDataAsJson());
+                    progress.dismiss();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onApiError(LIApiError error) {
+
+            }
+        });
+    }
+
+    public  void  showResult(JSONObject response){
+
+        try {
+            TextView_Email.setText(response.get("emailAddress").toString());
+            TextView_Name.setText(response.get("formattedName").toString());
+
+//            Picasso.with(this).load(response.getString("pictureUrl"))
+//                    .into(profile_picture);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
