@@ -7,8 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.LISessionManager;
+import com.linkedin.platform.errors.LIApiError;
 import com.linkedin.platform.errors.LIAuthError;
+import com.linkedin.platform.listeners.ApiListener;
+import com.linkedin.platform.listeners.ApiResponse;
 import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
 
@@ -44,11 +48,32 @@ public class MainActivity extends AppCompatActivity {
                 }, true);
 
 
+                String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name)";
+
+                APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
+                apiHelper.getRequest(MainActivity.this, url, new ApiListener() {
+                    @Override
+                    public void onApiSuccess(ApiResponse apiResponse) {
+                        Toast.makeText(getApplicationContext(),"Ysss!",Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                    @Override
+                    public void onApiError(LIApiError liApiError) {
+                        Toast.makeText(getApplicationContext(),"Ysss!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
 
 
 
             }
         });
+
+
 
 
 
