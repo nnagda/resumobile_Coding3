@@ -42,17 +42,19 @@ public class MainActivity extends AppCompatActivity {
                 LISessionManager.getInstance(getApplicationContext()).init(MainActivity.this, buildScope(), new AuthListener() {
                     @Override
                     public void onAuthSuccess() {
-                        Toast.makeText(getApplicationContext(),"You need to log in!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"You are logged in!",Toast.LENGTH_SHORT).show();
 
                     }
 
                     @Override
                     public void onAuthError(LIAuthError error) {
-                        Toast.makeText(getApplicationContext(),"You are logged in!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"You need to log in!",Toast.LENGTH_SHORT).show();
                         Intent i= new Intent(getApplicationContext(),LinkedIn_data.class);
                         startActivityForResult(i,0);
                     }
                 }, true);
+
+
 
 
                 String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name)";
@@ -61,14 +63,14 @@ public class MainActivity extends AppCompatActivity {
                 apiHelper.getRequest(MainActivity.this, url, new ApiListener() {
                     @Override
                     public void onApiSuccess(ApiResponse apiResponse) {
-                        Toast.makeText(getApplicationContext(),"no!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"yes!",Toast.LENGTH_SHORT).show();
 
                     }
 
 
                     @Override
                     public void onApiError(LIApiError liApiError) {
-                        Toast.makeText(getApplicationContext(),"yess!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"no!",Toast.LENGTH_SHORT).show();
                     }
 
 
