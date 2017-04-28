@@ -19,8 +19,18 @@ import com.linkedin.platform.utils.Scope;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+import acad277.stanfield.ben.resumobile.model.JobDetails;
+import acad277.stanfield.ben.resumobile.model.basicDetailModel;
+import acad277.stanfield.ben.resumobile.model.basicDetails;
+import acad277.stanfield.ben.resumobile.model.jobModel;
+
 public class MainActivity extends AppCompatActivity {
     Button login;
+    Button Override;
+    private String testName;
+    private basicDetailModel testBasicDetailModel;
 
 
     @Override
@@ -28,8 +38,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        login=(Button)findViewById(R.id.buttonSignIn);
 
+
+        login=(Button)findViewById(R.id.buttonSignIn);
+        Override=(Button)findViewById(R.id.buttonOverride);
+
+
+        Override.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //testBasicDetailModel.setName("hello".toString());
+
+
+                Intent i= new Intent(getApplicationContext(),Preferences.class);
+                startActivityForResult(i,3);
+
+
+
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
 

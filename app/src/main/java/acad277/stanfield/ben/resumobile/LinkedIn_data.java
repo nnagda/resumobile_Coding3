@@ -196,12 +196,8 @@ public class LinkedIn_data extends AppCompatActivity {
             TextView_Email.setText(response.get("emailAddress").toString());
             testBasicDetails.setEmail(response.get("emailAddress").toString());
 
-
-
             TextView_Name.setText(response.get("formattedName").toString());
             testBasicDetails.setName(response.get("formattedName").toString());
-
-
 
 //            Picasso.with(this).load(response.getString("pictureUrl"))
 //                    .into(profile_picture);

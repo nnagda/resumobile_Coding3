@@ -9,9 +9,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
+import acad277.stanfield.ben.resumobile.model.basicDetailModel;
+import acad277.stanfield.ben.resumobile.model.basicDetails;
+import acad277.stanfield.ben.resumobile.model.jobModel;
+
+import static android.R.attr.baseline;
 import static android.R.attr.data;
 
 public class Preferences extends AppCompatActivity {
@@ -21,6 +27,8 @@ public class Preferences extends AppCompatActivity {
     Button galleryPic;
     private int PICK_IMAGE_REQUEST = 1;
 
+    private basicDetailModel testBasicDetailModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +37,11 @@ public class Preferences extends AppCompatActivity {
         next=(Button)findViewById(R.id.button_next);
         deletePic=(Button)findViewById(R.id.Button_delete_Pic);
         galleryPic=(Button)findViewById(R.id.Button_galleryPic);
+
+        testBasicDetailModel= basicDetailModel.get(this);
+        Toast.makeText(getApplicationContext(),"result: "+testBasicDetailModel.getName(),Toast.LENGTH_SHORT).show();
+
+
 
 
 
