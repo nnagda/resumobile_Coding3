@@ -10,6 +10,15 @@ public class basicDetails implements Serializable {
     String name;
     String location;
     String education;
+    String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getName() {
         return name;
@@ -41,6 +50,7 @@ public class basicDetails implements Serializable {
                 "name='" + name + '\'' +
                 ", location='" + location + '\'' +
                 ", education='" + education + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

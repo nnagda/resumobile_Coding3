@@ -59,4 +59,13 @@
         android:layout_alignParentEnd="true"
         android:padding="@dimen/button_padding"/>
 
+    <ImageView
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:id="@+id/imageView_selectPicture"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp" />
+
 </RelativeLayout>

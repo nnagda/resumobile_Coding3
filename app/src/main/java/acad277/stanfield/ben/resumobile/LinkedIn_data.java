@@ -27,6 +27,7 @@ import com.linkedin.platform.listeners.DeepLinkListener;
 import org.json.JSONObject;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
+import acad277.stanfield.ben.resumobile.model.basicDetails;
 import acad277.stanfield.ben.resumobile.model.coverLetterDetails;
 import acad277.stanfield.ben.resumobile.model.jobModel;
 
@@ -38,7 +39,7 @@ public class LinkedIn_data extends AppCompatActivity {
     private ProgressDialog progress;
     private static final String url =
             "https://" + host + "/v1/people/~:" +
-                    "(email-address,formatted-name,headline,phone-numbers,positions:(id,title,summary,start-date,end-date,is-current,company:(id,name,type,size,industry,ticker)))";
+                    "(email-address,formatted-name)";
 
 
     Button editCoverLetter;
@@ -59,6 +60,11 @@ public class LinkedIn_data extends AppCompatActivity {
     coverLetterDetails testCoverLetterDetails= new coverLetterDetails();
     JobDetails testJob= new JobDetails();
     JobDetails testJob2= new JobDetails();
+
+    basicDetails testBasicDetails= new basicDetails();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,7 +194,14 @@ public class LinkedIn_data extends AppCompatActivity {
 
         try {
             TextView_Email.setText(response.get("emailAddress").toString());
+            testBasicDetails.setEmail(response.get("emailAddress").toString());
+
+
+
             TextView_Name.setText(response.get("formattedName").toString());
+            testBasicDetails.setName(response.get("formattedName").toString());
+
+
 
 //            Picasso.with(this).load(response.getString("pictureUrl"))
 //                    .into(profile_picture);
