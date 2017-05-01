@@ -213,17 +213,15 @@ public class LinkedIn_data extends AppCompatActivity {
                 JSONObject firstComp = (JSONObject)valuesArray.get(i);
                 JSONObject comp = firstComp.getJSONObject("company");
                 JSONObject date = firstComp.getJSONObject("startDate");
-//                JSONObject title = firstComp.getJSONObject("title");
-//                String companyTitle = firstComp.getString("title");
+//                JSONObject summary = firstComp.getJSONObject("summary");
                 String companyName = comp.getString("name");
                 String startDate = date.getString("year");
-//                String summary = firstComp.getString("summary");
-//                String title = firstComp.getString("title");
                 Log.d("the company name is ", companyName);
-//                Log.d("the company title is ", companyTitle);
+//                Log.d("the company summary is ", summary.toString());
                 JobDetails testJob= new JobDetails();
                 testJob.setJobName(companyName);
                 testJob.setPositionName(startDate);
+                testJob.setPositionDescrption("Sample job description");
                 arrayJob.add(testJob);
             }
 
