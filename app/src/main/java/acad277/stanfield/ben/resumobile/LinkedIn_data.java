@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -24,6 +25,7 @@ import com.linkedin.platform.listeners.ApiListener;
 import com.linkedin.platform.listeners.ApiResponse;
 import com.linkedin.platform.listeners.DeepLinkListener;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
@@ -39,7 +41,7 @@ public class LinkedIn_data extends AppCompatActivity {
     private ProgressDialog progress;
     private static final String url =
             "https://" + host + "/v1/people/~:" +
-                    "(email-address,formatted-name)";
+                    "(email-address,formatted-name,positions)";
 
 
     Button editCoverLetter;
@@ -58,8 +60,7 @@ public class LinkedIn_data extends AppCompatActivity {
     private jobModel myJobModel;
 
     coverLetterDetails testCoverLetterDetails= new coverLetterDetails();
-    JobDetails testJob= new JobDetails();
-    JobDetails testJob2= new JobDetails();
+
 
     basicDetails testBasicDetails= new basicDetails();
 
@@ -105,16 +106,16 @@ public class LinkedIn_data extends AppCompatActivity {
         //Adding to the array // test values
         Intent i= new Intent(getApplicationContext(), Job_edit.class);
 
-        testJob.setJobName("Bonsai");
-        testJob.setPositionDescrption("Worked as a product designer at Bonsai AI, an Artificial Intelligence startup.");
-        testJob.setPositionName("Design Intern");
-
-        testJob2.setJobName("Google");
-        testJob2.setPositionDescrption("Worked as a designer at Blogger, a blog platform owned by Google.");
-        testJob2.setPositionName("Intern");
-
-        arrayJob.add(testJob);
-        arrayJob.add(testJob2);
+//        testJob.setJobName("Bonsai");
+//        testJob.setPositionDescrption("Worked as a product designer at Bonsai AI, an Artificial Intelligence startup.");
+//        testJob.setPositionName("Design Intern");
+//
+//        testJob2.setJobName("Google");
+//        testJob2.setPositionDescrption("Worked as a designer at Blogger, a blog platform owned by Google.");
+//        testJob2.setPositionName("Intern");
+//
+//        arrayJob.add(testJob);
+//        arrayJob.add(testJob2);
 
         Intent ia= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
         ia.putExtra(COVER_DETAILS,testCoverLetterDetails);
@@ -171,10 +172,13 @@ public class LinkedIn_data extends AppCompatActivity {
     }
 
     public void linkededinApiHelper(){
+        Log.d("URL is ", "1");
         APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
+        Log.d("URL is ", "2");
         apiHelper.getRequest(LinkedIn_data.this, url, new ApiListener() {
             @Override
             public void onApiSuccess(ApiResponse result) {
+                Log.d("URL is ", "3");
                 try {
                     showResult(result.getResponseDataAsJson());
                     progress.dismiss();
@@ -185,6 +189,7 @@ public class LinkedIn_data extends AppCompatActivity {
 
             @Override
             public void onApiError(LIApiError error) {
+                Log.d("error is ", error.toString());
 
             }
         });
@@ -196,8 +201,36 @@ public class LinkedIn_data extends AppCompatActivity {
             TextView_Email.setText(response.get("emailAddress").toString());
             testBasicDetails.setEmail(response.get("emailAddress").toString());
 
+
             TextView_Name.setText(response.get("formattedName").toString());
             testBasicDetails.setName(response.get("formattedName").toString());
+
+//            country.setText(response.get("positions").toString());
+            String positionString =response.get("positions").toString();
+            JSONObject positionJSON = new JSONObject(positionString);
+            JSONArray valuesArray = positionJSON.getJSONArray("values");
+            for (int i = 0; i < valuesArray.length(); i++) {
+                JSONObject firstComp = (JSONObject)valuesArray.get(i);
+                JSONObject comp = firstComp.getJSONObject("company");
+                JSONObject date = firstComp.getJSONObject("startDate");
+//                JSONObject title = firstComp.getJSONObject("title");
+//                String companyTitle = firstComp.getString("title");
+                String companyName = comp.getString("name");
+                String startDate = date.getString("year");
+//                String summary = firstComp.getString("summary");
+//                String title = firstComp.getString("title");
+                Log.d("the company name is ", companyName);
+//                Log.d("the company title is ", companyTitle);
+                JobDetails testJob= new JobDetails();
+                testJob.setJobName(companyName);
+                testJob.setPositionName(startDate);
+                arrayJob.add(testJob);
+            }
+
+
+            String values = positionJSON.getString("values");
+            Log.d("the summary is ", values);
+//            testBasicDetails.setName(response.get("numConnections").toString());
 
 //            Picasso.with(this).load(response.getString("pictureUrl"))
 //                    .into(profile_picture);

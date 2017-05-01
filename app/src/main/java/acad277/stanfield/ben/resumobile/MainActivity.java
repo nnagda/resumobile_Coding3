@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent i= new Intent(getApplicationContext(),Preferences.class);
                 startActivityForResult(i,3);
+                basicDetailModel.get(getApplicationContext()).setName("hello");
+
 
 
 
@@ -60,9 +62,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         login.setOnClickListener(new View.OnClickListener() {
-
-
-
 
             @Override
             public void onClick(View v) {
