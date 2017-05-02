@@ -43,7 +43,7 @@ public class LinkedIn_data extends AppCompatActivity {
     private ProgressDialog progress;
     private static final String url =
             "https://" + host + "/v1/people/~:" +
-                    "(email-address,formatted-name,positions,location:(name))";
+                    "(email-address,formatted-name,positions,location:(name),public-profile-url)";
 
 
     Button editCoverLetter;
@@ -189,6 +189,8 @@ public class LinkedIn_data extends AppCompatActivity {
         try {
             Log.d("json is ", response.toString());
             TextView_Email.setText(response.get("emailAddress").toString());
+//           Access this again when you're ready to use public profile
+// TextView_Email.setText(response.get("publicProfileUrl").toString());
 
             JSONObject locationObject= response.getJSONObject("location");
             String locationString = locationObject.getString("name");
