@@ -29,8 +29,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
+import acad277.stanfield.ben.resumobile.model.basicDetailModel;
 import acad277.stanfield.ben.resumobile.model.basicDetails;
 import acad277.stanfield.ben.resumobile.model.coverLetterDetails;
+import acad277.stanfield.ben.resumobile.model.coverLetterModel;
 import acad277.stanfield.ben.resumobile.model.jobModel;
 
 
@@ -60,9 +62,8 @@ public class LinkedIn_data extends AppCompatActivity {
     private jobModel myJobModel;
 
     coverLetterDetails testCoverLetterDetails= new coverLetterDetails();
-
-
     basicDetails testBasicDetails= new basicDetails();
+
 
 
 
@@ -75,8 +76,6 @@ public class LinkedIn_data extends AppCompatActivity {
         progress.show();
 
         linkededinApiHelper();
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linked_in_data);
@@ -106,17 +105,6 @@ public class LinkedIn_data extends AppCompatActivity {
         //Adding to the array // test values
         Intent i= new Intent(getApplicationContext(), Job_edit.class);
 
-//        testJob.setJobName("Bonsai");
-//        testJob.setPositionDescrption("Worked as a product designer at Bonsai AI, an Artificial Intelligence startup.");
-//        testJob.setPositionName("Design Intern");
-//
-//        testJob2.setJobName("Google");
-//        testJob2.setPositionDescrption("Worked as a designer at Blogger, a blog platform owned by Google.");
-//        testJob2.setPositionName("Intern");
-//
-//        arrayJob.add(testJob);
-//        arrayJob.add(testJob2);
-
         Intent ia= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
         ia.putExtra(COVER_DETAILS,testCoverLetterDetails);
 
@@ -132,6 +120,7 @@ public class LinkedIn_data extends AppCompatActivity {
         //Set  LinkedIn text.
         //Currently setting dummy text
         coverLetter.setText("Sample cover letter text.");
+
 
 
 
@@ -200,10 +189,15 @@ public class LinkedIn_data extends AppCompatActivity {
         try {
             TextView_Email.setText(response.get("emailAddress").toString());
             testBasicDetails.setEmail(response.get("emailAddress").toString());
+            basicDetailModel.get(getApplicationContext()).setEmail(response.get("emailAddress").toString());
+
 
 
             TextView_Name.setText(response.get("formattedName").toString());
             testBasicDetails.setName(response.get("formattedName").toString());
+            basicDetailModel.get(getApplicationContext()).setName(response.get("formattedName").toString());
+
+
 
 //            country.setText(response.get("positions").toString());
             String positionString =response.get("positions").toString();
@@ -213,6 +207,7 @@ public class LinkedIn_data extends AppCompatActivity {
                 JSONObject firstComp = (JSONObject)valuesArray.get(i);
                 JSONObject comp = firstComp.getJSONObject("company");
                 JSONObject date = firstComp.getJSONObject("startDate");
+
 //                JSONObject summary = firstComp.getJSONObject("summary");
                 String companyName = comp.getString("name");
                 String startDate = date.getString("year");
@@ -227,6 +222,8 @@ public class LinkedIn_data extends AppCompatActivity {
 
 
             String values = positionJSON.getString("values");
+
+
             Log.d("the summary is ", values);
 //            testBasicDetails.setName(response.get("numConnections").toString());
 
@@ -243,11 +240,11 @@ public class LinkedIn_data extends AppCompatActivity {
 
 
     private class JobAdapter extends ArrayAdapter<JobDetails>{
-        ArrayList<JobDetails> arrayJob= new ArrayList<>();
+        //ArrayList<JobDetails> arrayJob= new ArrayList<>();
 
         public JobAdapter(ArrayList<JobDetails> arrayJob){
             super(getApplicationContext(), 0, arrayJob);
-            this.arrayJob = arrayJob;
+            //this.arrayJob = arrayJob;
 
         }
         @NonNull
@@ -294,6 +291,11 @@ public class LinkedIn_data extends AppCompatActivity {
                 testCoverLetterDetails=(coverLetterDetails) data.getSerializableExtra(COVER_DETAILS);
                 testCoverLetterDetails.setCoverLetterText(testCoverLetterDetails.getCoverLetterText());
                 coverLetter.setText(testCoverLetterDetails.getCoverLetterText());
+
+                coverLetterModel.get(getApplicationContext()).setCoverLetterText(testCoverLetterDetails.getCoverLetterText());
+
+
+
 
             }
 

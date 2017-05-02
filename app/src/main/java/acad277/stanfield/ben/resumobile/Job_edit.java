@@ -63,6 +63,8 @@ public class Job_edit extends AppCompatActivity {
         jobAdapter = new JobAdapter(arrayJob);
 
         jobs.setAdapter(jobAdapter);
+
+
         //Adding to the array // test values
         JobDetails testJob= new JobDetails();
 
@@ -104,7 +106,7 @@ public class Job_edit extends AppCompatActivity {
 
     }
     private class JobAdapter extends ArrayAdapter<JobDetails> {
-        ArrayList<JobDetails> arrayJob= new ArrayList<>();
+        ArrayList<JobDetails> arrayJob;
 
         public JobAdapter(ArrayList<JobDetails> arrayJob){
             super(getApplicationContext(), 0, arrayJob);
@@ -139,6 +141,8 @@ public class Job_edit extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
         if (requestCode == 5) {
             Log.d("....", "coming back from job add");
             jobAdapter.notifyDataSetChanged();

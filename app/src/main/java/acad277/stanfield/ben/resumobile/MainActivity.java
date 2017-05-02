@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //testBasicDetailModel.setName("hello".toString());
-
+                //testBasicDetailModel.setName("hello");
+                //basicDetailModel.get(getApplicationContext()).setName("hello");
 
                 Intent i= new Intent(getApplicationContext(),Preferences.class);
                 startActivityForResult(i,3);
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
                 APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
                 apiHelper.getRequest(MainActivity.this, url, new ApiListener() {
+
                     @Override
                     public void onApiSuccess(ApiResponse apiResponse) {
                         Toast.makeText(getApplicationContext(),"yes!",Toast.LENGTH_SHORT).show();

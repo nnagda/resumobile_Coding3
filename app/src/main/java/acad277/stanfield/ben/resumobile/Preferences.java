@@ -1,5 +1,6 @@
 package acad277.stanfield.ben.resumobile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import acad277.stanfield.ben.resumobile.model.basicDetailModel;
@@ -18,6 +21,7 @@ import acad277.stanfield.ben.resumobile.model.basicDetails;
 import acad277.stanfield.ben.resumobile.model.jobModel;
 
 import static android.R.attr.baseline;
+import static android.R.attr.bitmap;
 import static android.R.attr.data;
 
 public class Preferences extends AppCompatActivity {
@@ -26,6 +30,7 @@ public class Preferences extends AppCompatActivity {
     Button deletePic;
     Button galleryPic;
     private int PICK_IMAGE_REQUEST = 1;
+
 
     private basicDetailModel testBasicDetailModel;
 
@@ -39,10 +44,6 @@ public class Preferences extends AppCompatActivity {
         galleryPic=(Button)findViewById(R.id.Button_galleryPic);
 
         testBasicDetailModel= basicDetailModel.get(this);
-        Toast.makeText(getApplicationContext(),"result: "+testBasicDetailModel.getName(),Toast.LENGTH_SHORT).show();
-
-
-
 
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +51,9 @@ public class Preferences extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(getApplicationContext(),Resume_view.class);
                 startActivityForResult(i,8);
+
+
+
             }
         });
 
@@ -66,9 +70,13 @@ public class Preferences extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 // Always show the chooser (if there are multiple options available)
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
             }
         });
+
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -80,15 +88,32 @@ public class Preferences extends AppCompatActivity {
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                // Log.d(TAG, String.valueOf(bitmap));
 
                 ImageView imageView = (ImageView) findViewById(R.id.imageView_selectPicture);
                 imageView.setImageBitmap(bitmap);
+
+                Intent i = new Intent(this, Resume_view.class);
+                i.putExtra("Image", bitmap);
+
+                startActivity(i);
+
+
+                Toast.makeText(getApplicationContext(),bitmap.toString(),Toast.LENGTH_SHORT).show();
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+
+
+
+
+
     }
+
+
 
 
 }

@@ -11,6 +11,11 @@ import java.util.ArrayList;
 public class basicDetailModel {
     private Context context;
     private String name;
+
+    private String email;
+    private String Country;
+
+
     private static basicDetailModel testBasicDetailModel;
 
     private basicDetailModel(Context context){
@@ -21,7 +26,7 @@ public class basicDetailModel {
 
     public static basicDetailModel get (Context c){
         if(testBasicDetailModel==null){
-            testBasicDetailModel= new basicDetailModel(c.getApplicationContext());
+            testBasicDetailModel= new basicDetailModel(c);
         }
         return testBasicDetailModel;
     }
@@ -34,6 +39,23 @@ public class basicDetailModel {
 
         this.name = name;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCountry() {
+        return Country;
+    }
+
+    public void setCountry(String country) {
+        Country = country;
+    }
+
 
 
 }
