@@ -43,7 +43,7 @@ public class LinkedIn_data extends AppCompatActivity {
     private ProgressDialog progress;
     private static final String url =
             "https://" + host + "/v1/people/~:" +
-                    "(email-address,formatted-name,positions)";
+                    "(email-address,formatted-name,positions,location:(name))";
 
 
     Button editCoverLetter;
@@ -187,7 +187,14 @@ public class LinkedIn_data extends AppCompatActivity {
     public  void  showResult(JSONObject response){
 
         try {
+            Log.d("json is ", response.toString());
             TextView_Email.setText(response.get("emailAddress").toString());
+
+            JSONObject locationObject= response.getJSONObject("location");
+            String locationString = locationObject.getString("name");
+
+            Log.d("location is: ", locationString);
+            country.setText(locationString);
             testBasicDetails.setEmail(response.get("emailAddress").toString());
             basicDetailModel.get(getApplicationContext()).setEmail(response.get("emailAddress").toString());
 
@@ -208,15 +215,15 @@ public class LinkedIn_data extends AppCompatActivity {
                 JSONObject comp = firstComp.getJSONObject("company");
                 JSONObject date = firstComp.getJSONObject("startDate");
 
-//                JSONObject summary = firstComp.getJSONObject("summary");
+                //summary
+                String companySummary = firstComp.getString("summary");
+
                 String companyName = comp.getString("name");
                 String startDate = date.getString("year");
-                Log.d("the company name is ", companyName);
-//                Log.d("the company summary is ", summary.toString());
                 JobDetails testJob= new JobDetails();
                 testJob.setJobName(companyName);
                 testJob.setPositionName(startDate);
-                testJob.setPositionDescrption("Sample job description");
+                testJob.setPositionDescrption(companySummary);
                 arrayJob.add(testJob);
             }
 
