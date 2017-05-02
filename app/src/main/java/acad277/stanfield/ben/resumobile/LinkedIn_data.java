@@ -43,7 +43,7 @@ public class LinkedIn_data extends AppCompatActivity {
     private ProgressDialog progress;
     private static final String url =
             "https://" + host + "/v1/people/~:" +
-                    "(email-address,formatted-name,positions,location:(name),public-profile-url)";
+                    "(email-address,formatted-name,positions,location:(name),public-profile-url,headline,summary)";
 
 
     Button editCoverLetter;
@@ -191,12 +191,27 @@ public class LinkedIn_data extends AppCompatActivity {
             TextView_Email.setText(response.get("emailAddress").toString());
 //           Access this again when you're ready to use public profile
 // TextView_Email.setText(response.get("publicProfileUrl").toString());
+//            TextView_Email.setText(response.get("headline").toString());
+
 
             JSONObject locationObject= response.getJSONObject("location");
             String locationString = locationObject.getString("name");
 
             Log.d("location is: ", locationString);
             country.setText(locationString);
+
+
+            basicDetailModel.get(getApplicationContext()).setCountry(locationString);
+
+
+
+
+
+
+
+            coverLetter.setText(response.get("summary").toString());
+
+//            coverLetter.setText(response.get("summary").toString());
             testBasicDetails.setEmail(response.get("emailAddress").toString());
             basicDetailModel.get(getApplicationContext()).setEmail(response.get("emailAddress").toString());
 
@@ -226,7 +241,7 @@ public class LinkedIn_data extends AppCompatActivity {
                 testJob.setJobName(companyName);
                 testJob.setPositionName(startDate);
                 testJob.setPositionDescrption(companySummary);
-                arrayJob.add(testJob);
+                 arrayJob.add(testJob);
             }
 
 
@@ -234,6 +249,7 @@ public class LinkedIn_data extends AppCompatActivity {
 
 
             Log.d("the summary is ", values);
+            jobAdapter.notifyDataSetChanged();
 //            testBasicDetails.setName(response.get("numConnections").toString());
 
 //            Picasso.with(this).load(response.getString("pictureUrl"))
@@ -302,7 +318,7 @@ public class LinkedIn_data extends AppCompatActivity {
                 coverLetter.setText(testCoverLetterDetails.getCoverLetterText());
 
                 coverLetterModel.get(getApplicationContext()).setCoverLetterText(testCoverLetterDetails.getCoverLetterText());
-
+                jobAdapter.notifyDataSetChanged();
 
 
 
