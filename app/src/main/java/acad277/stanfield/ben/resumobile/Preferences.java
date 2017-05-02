@@ -92,13 +92,20 @@ public class Preferences extends AppCompatActivity {
                 ImageView imageView = (ImageView) findViewById(R.id.imageView_selectPicture);
                 imageView.setImageBitmap(bitmap);
 
+//                Intent i = new Intent(this, Resume_view.class);
+//                i.putExtra("BitmapImage", bitmap);
+
+
                 Intent i = new Intent(this, Resume_view.class);
-                i.putExtra("Image", bitmap);
+               // Bitmap b = new Bitmap(); // your bitmap
 
-                startActivity(i);
+                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
 
+                i.putExtra("BitmapImage", "hwwl");
+                //startActivity(i);
 
-                Toast.makeText(getApplicationContext(),bitmap.toString(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),bitmap.toString(),Toast.LENGTH_SHORT).show();
 
 
             } catch (IOException e) {

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -91,10 +92,25 @@ public class Resume_view extends AppCompatActivity {
         coverLetter.setText(testCoverLetterModel.getCoverLetterText());
 
 
-        Intent intent = getIntent();
-        Bitmap bitmap = (Bitmap) getIntent().getParcelableExtra("BitmapImage");
+//        Intent intent = getIntent();
+//        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
 
-        Toast.makeText(getApplicationContext(),"test:"+bitmap,Toast.LENGTH_SHORT).show();
+//        if(bitmap == null)
+//            Log.d("..", "bitmap  null");
+
+//        Toast.makeText(getApplicationContext(),"test:"+bitmap,Toast.LENGTH_SHORT).show();
+//        Log.d("test",bitmap.toString());
+
+
+        if(getIntent().hasExtra("BitmapImage")) {
+            imageView = new ImageView(this);
+//            Bitmap bitmap = BitmapFactory.decodeByteArray(
+//                    getIntent().getByteArrayExtra("BitmapImage"),0,getIntent()
+//                            .getByteArrayExtra("BitmapImage").length);
+            //imageView.setImageBitmap(bitmap);
+            //String bitmap= getIntent().getStringExtra("BitmapImage");
+            //Toast.makeText(getApplicationContext(),"test:"+bitmap.toString(),Toast.LENGTH_SHORT).show();
+        }
 
 
 
