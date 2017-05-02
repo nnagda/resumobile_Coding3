@@ -106,13 +106,14 @@ public class Job_edit extends AppCompatActivity {
 
     }
     private class JobAdapter extends ArrayAdapter<JobDetails> {
-        ArrayList<JobDetails> arrayJob;
+        //ArrayList<JobDetails> arrayJob;
 
         public JobAdapter(ArrayList<JobDetails> arrayJob){
             super(getApplicationContext(), 0, arrayJob);
-            this.arrayJob = arrayJob;
+            //this.arrayJob = arrayJob;
 
         }
+
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -135,7 +136,7 @@ public class Job_edit extends AppCompatActivity {
             positionName.setText(testJob.getPositionName());
             jobDescription.setText(testJob.getPositionDescrption());
 
-            return convertView;
+           return convertView;
         }
 
     }

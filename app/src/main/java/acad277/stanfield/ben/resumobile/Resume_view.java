@@ -92,30 +92,16 @@ public class Resume_view extends AppCompatActivity {
         coverLetter.setText(testCoverLetterModel.getCoverLetterText());
 
 
-//        Intent intent = getIntent();
-//        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
+        Intent intent;
+        intent=getIntent();
 
-//        if(bitmap == null)
-//            Log.d("..", "bitmap  null");
+        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
 
-//        Toast.makeText(getApplicationContext(),"test:"+bitmap,Toast.LENGTH_SHORT).show();
-//        Log.d("test",bitmap.toString());
+        if(bitmap==null){
+            Toast.makeText(getApplicationContext(),"test:",Toast.LENGTH_SHORT).show();
 
 
-        if(getIntent().hasExtra("BitmapImage")) {
-            imageView = new ImageView(this);
-//            Bitmap bitmap = BitmapFactory.decodeByteArray(
-//                    getIntent().getByteArrayExtra("BitmapImage"),0,getIntent()
-//                            .getByteArrayExtra("BitmapImage").length);
-            //imageView.setImageBitmap(bitmap);
-            //String bitmap= getIntent().getStringExtra("BitmapImage");
-            //Toast.makeText(getApplicationContext(),"test:"+bitmap.toString(),Toast.LENGTH_SHORT).show();
         }
-
-
-
-
-
 
 
     }
