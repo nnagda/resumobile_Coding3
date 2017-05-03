@@ -56,6 +56,8 @@ public class LinkedIn_data extends AppCompatActivity {
     ListView jobs;
     TextView TextView_Name;
     TextView TextView_Email;
+    TextView publicProfile;
+    TextView headline;
 
     private ArrayList<JobDetails> arrayJob;
     private JobAdapter jobAdapter;
@@ -63,8 +65,6 @@ public class LinkedIn_data extends AppCompatActivity {
 
     coverLetterDetails testCoverLetterDetails= new coverLetterDetails();
     basicDetails testBasicDetails= new basicDetails();
-
-
 
 
 
@@ -98,6 +98,8 @@ public class LinkedIn_data extends AppCompatActivity {
         coverLetter=(TextView)findViewById(R.id.TextView_coverLetter);
         TextView_Name=(TextView)findViewById(R.id.TextView_Name);
         TextView_Email=(TextView)findViewById(R.id.TextView_Email);
+        publicProfile= (TextView)findViewById(R.id.TextView_publicProfile);
+        headline=(TextView)findViewById(R.id.TextView_Headline);
 
         jobs=(ListView) findViewById(R.id.ListView_jobs);
 
@@ -113,14 +115,6 @@ public class LinkedIn_data extends AppCompatActivity {
 
         jobAdapter = new JobAdapter(arrayJob);
         jobs.setAdapter(jobAdapter);
-
-
-
-
-        //Set  LinkedIn text.
-        //Currently setting dummy text
-        coverLetter.setText("Sample cover letter text.");
-
 
 
 
@@ -188,11 +182,13 @@ public class LinkedIn_data extends AppCompatActivity {
 
         try {
             Log.d("json is ", response.toString());
-            TextView_Email.setText(response.get("emailAddress").toString());
-//           Access this again when you're ready to use public profile
-// TextView_Email.setText(response.get("publicProfileUrl").toString());
-//            TextView_Email.setText(response.get("headline").toString());
 
+
+            publicProfile.setText(response.get("publicProfileUrl").toString());
+            basicDetailModel.get(getApplicationContext()).setPublicProfile(response.get("publicProfileUrl").toString());
+
+            headline.setText(response.get("headline").toString());
+            basicDetailModel.get(getApplicationContext()).setHeadline(response.get("headline").toString());
 
             JSONObject locationObject= response.getJSONObject("location");
             String locationString = locationObject.getString("name");
@@ -202,12 +198,6 @@ public class LinkedIn_data extends AppCompatActivity {
 
 
             basicDetailModel.get(getApplicationContext()).setCountry(locationString);
-
-
-
-
-
-
 
             coverLetter.setText(response.get("summary").toString());
 

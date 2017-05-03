@@ -9,8 +9,8 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <ImageView
-        android:layout_width="200px"
-        android:layout_height="200px"
+        android:layout_width="100px"
+        android:layout_height="100px"
         android:id="@+id/imageView_selectPicture"
         android:background="@android:color/holo_blue_bright"
         android:layout_alignParentStart="true"
@@ -75,10 +75,32 @@
         android:textColor="@android:color/holo_red_dark"
         android:id="@+id/TextView_coverLetter"
         android:text="Cover Letter Comes Here"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Public Profile"
+        android:id="@+id/textView10"/>
 
-    <Space
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:id="@+id/TextView_publicProfile"
+        android:text="LinkedIn link comes here"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Headline"
+        android:id="@+id/textView11"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:id="@+id/TextView_Headline"
+        android:text="Headline text"/>
 
     <TextView
         android:layout_width="wrap_content"

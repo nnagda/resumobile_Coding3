@@ -34,11 +34,10 @@ import static android.R.attr.data;
 
 public class Preferences extends AppCompatActivity {
 
-    Button next;
-    Button deletePic;
+    Button selectPic;
     Button galleryPic;
+    Button Next;
     private int PICK_IMAGE_REQUEST = 1;
-    File album;
     ImageView imageView;
 
 
@@ -49,42 +48,28 @@ public class Preferences extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
 
-        next=(Button)findViewById(R.id.button_next);
-        deletePic=(Button)findViewById(R.id.Button_delete_Pic);
-        galleryPic=(Button)findViewById(R.id.Button_galleryPic);
+        selectPic=(Button)findViewById(R.id.button_selectPic);
+        //Next=(Button)findViewById(R.id.Button_Next);
         imageView = (ImageView) findViewById(R.id.imageView_selectPicture);
 
-        testBasicDetailModel= basicDetailModel.get(this);
 
 
 
-
-
-        next.setOnClickListener(new View.OnClickListener() {
+        selectPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(getApplicationContext(),Resume_view.class);
-                startActivityForResult(i,8);
+                startActivityForResult(i,9);
 
 
 
             }
         });
 
-        //album= new File("/storage/emulated/0/DCIM/Camera/IMG_20170428_134625.jpg");
 
-        galleryPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                // Show only images, no videos or anything else
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                // Always show the chooser (if there are multiple options available)
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
 
-            }
-        });
+
+
 
         SharedPreferences shre = PreferenceManager.getDefaultSharedPreferences(this);
         String previouslyEncodedImage = shre.getString("image_data", "");

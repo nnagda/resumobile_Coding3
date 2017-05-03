@@ -2,12 +2,17 @@ package acad277.stanfield.ben.resumobile;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +23,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
@@ -37,8 +44,11 @@ public class Resume_view extends AppCompatActivity {
     TextView TextView_Name;
     TextView TextView_Email;
     TextView email;
-
+    TextView publicProfile;
+    TextView headline;
     ImageView imageView;
+
+    private int PICK_IMAGE_REQUEST = 1;
 
 
 
@@ -75,6 +85,10 @@ public class Resume_view extends AppCompatActivity {
         TextView_Name=(TextView)findViewById(R.id.TextView_Name);
         TextView_Email=(TextView)findViewById(R.id.TextView_Email);
         jobs=(ListView) findViewById(R.id.ListView_jobs);
+        publicProfile= (TextView)findViewById(R.id.TextView_publicProfile);
+        headline=(TextView)findViewById(R.id.TextView_Headline);
+
+
 
         imageView=(ImageView)findViewById(R.id.imageView_selectPicture);
 
@@ -89,28 +103,38 @@ public class Resume_view extends AppCompatActivity {
         name.setText(testBasicDetailModel.getName());
         email.setText(testBasicDetailModel.getEmail());
         country.setText(testBasicDetailModel.getCountry());
+        headline.setText(testBasicDetailModel.getHeadline());
+        publicProfile.setText(testBasicDetailModel.getPublicProfile());
         coverLetter.setText(testCoverLetterModel.getCoverLetterText());
 
 
-        Intent intent;
-        intent=getIntent();
+                Intent intent = new Intent();
+                // Show only images, no videos or anything else
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                // Always show the chooser (if there are multiple options available)
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
 
-        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
-
-        if(bitmap==null){
-            Toast.makeText(getApplicationContext(),"test:",Toast.LENGTH_SHORT).show();
 
 
+        SharedPreferences shre = PreferenceManager.getDefaultSharedPreferences(this);
+        String previouslyEncodedImage = shre.getString("image_data", "");
+
+        if( !previouslyEncodedImage.equalsIgnoreCase("") ){
+            byte[] b = Base64.decode(previouslyEncodedImage, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+            imageView.setImageBitmap(bitmap);
         }
 
 
+
     }
-    private class JobAdapter extends ArrayAdapter<JobDetails> {
-        ArrayList<JobDetails> arrayJob= new ArrayList<>();
+    private class JobAdapter extends ArrayAdapter<JobDetails>{
+        //ArrayList<JobDetails> arrayJob= new ArrayList<>();
 
         public JobAdapter(ArrayList<JobDetails> arrayJob){
             super(getApplicationContext(), 0, arrayJob);
-            this.arrayJob = arrayJob;
+            //this.arrayJob = arrayJob;
 
         }
         @NonNull
@@ -138,6 +162,47 @@ public class Resume_view extends AppCompatActivity {
             return convertView;
         }
 
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+
+            Uri uri = data.getData();
+
+            try {
+
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+
+
+                imageView.setImageBitmap(bitmap);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] b = baos.toByteArray();
+
+                String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+                //textEncode.setText(encodedImage);
+
+                SharedPreferences shre = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor edit=shre.edit();
+                edit.putString("image_data",encodedImage);
+                edit.commit();
+
+
+
+
+
+            } catch (IOException e) {
+                Log.d("there is an exception","3");
+
+                e.printStackTrace();
+            }
+        }
 
 
     }

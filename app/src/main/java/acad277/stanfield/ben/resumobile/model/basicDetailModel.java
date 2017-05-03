@@ -12,6 +12,24 @@ public class basicDetailModel {
     private Context context;
     private String name;
 
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
+    }
+
+    public String getPublicProfile() {
+        return publicProfile;
+    }
+
+    public void setPublicProfile(String publicProfile) {
+        this.publicProfile = publicProfile;
+    }
+
+    private String headline;
+    private String publicProfile;
     private String email;
     private String Country;
 
