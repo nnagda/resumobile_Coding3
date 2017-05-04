@@ -11,34 +11,50 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="acad277.stanfield.ben.resumobile.Preferences">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:layout_marginTop="10dp">
+
     <Button
         android:text="Select From Gallery"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/button_selectPic"
         android:padding="@dimen/button_padding"/>
+
+    <Button
+        android:text="NEXT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button_next"
+        android:layout_below="@+id/button_selectPic"
+        android:padding="@dimen/button_padding"
+        android:textColor="#ffffff"
+        android:backgroundTint="#f79146"/>
+    </RelativeLayout>
 
     <TextView
         android:text="Select Picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:textSize="25dp"
         android:layout_alignParentStart="true"
         android:layout_marginStart="11dp"
-        android:layout_marginTop="39dp"
-        android:id="@+id/textView3" />
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView3"/>
 
 
     <ImageView
-        android:layout_width="300px"
-        android:layout_height="300px"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:id="@+id/imageView_selectPicture"
-        android:background="@android:color/holo_blue_bright"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="5dp" />
 
 </RelativeLayout>

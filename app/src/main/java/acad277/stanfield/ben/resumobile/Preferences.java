@@ -49,6 +49,7 @@ public class Preferences extends AppCompatActivity {
         setContentView(R.layout.activity_preferences);
 
         selectPic=(Button)findViewById(R.id.button_selectPic);
+        Next=(Button)findViewById(R.id.button_next);
         //Next=(Button)findViewById(R.id.Button_Next);
         imageView = (ImageView) findViewById(R.id.imageView_selectPicture);
 
@@ -56,6 +57,17 @@ public class Preferences extends AppCompatActivity {
 
 
         selectPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(getApplicationContext(),Resume_view.class);
+                startActivityForResult(i,9);
+
+
+
+            }
+        });
+
+        Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(getApplicationContext(),Resume_view.class);
