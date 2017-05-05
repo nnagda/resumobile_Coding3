@@ -79,10 +79,6 @@ public class Cover_Letter_Edit extends AppCompatActivity {
 
 
 
-                Toast.makeText(getApplicationContext(),testCoverLetterModel.getCoverLetterText(),Toast.LENGTH_SHORT).show();
-
-
-
                 finish();
             }
         });
