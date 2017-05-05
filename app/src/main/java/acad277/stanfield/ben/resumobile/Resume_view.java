@@ -127,6 +127,17 @@ public class Resume_view extends AppCompatActivity {
         }
 
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(Resume_view.this,MainActivity.class);
+                startActivity(in);
+                finish();
+
+            }
+        });
+
+
 
     }
     private class JobAdapter extends ArrayAdapter<JobDetails>{
