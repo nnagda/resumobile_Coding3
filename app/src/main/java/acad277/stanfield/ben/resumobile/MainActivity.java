@@ -1,3 +1,11 @@
+//Name: Naylee Nagda and Ben Stanfield
+//Resumobile
+//Due date: May 5th
+//This our our Main Activity Log in page
+
+//It establishes connection to LinkedIn
+
+
 package acad277.stanfield.ben.resumobile;
 
 import android.content.Intent;
@@ -16,11 +24,8 @@ import com.linkedin.platform.listeners.ApiListener;
 import com.linkedin.platform.listeners.ApiResponse;
 import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import acad277.stanfield.ben.resumobile.model.JobDetails;
 import acad277.stanfield.ben.resumobile.model.basicDetailModel;
 import acad277.stanfield.ben.resumobile.model.basicDetails;
@@ -47,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+//Allows us to log into LinkedIn
 
                 LISessionManager.getInstance(getApplicationContext()).init(MainActivity.this, buildScope(), new AuthListener() {
                     @Override
@@ -65,21 +70,20 @@ public class MainActivity extends AppCompatActivity {
                 }, true);
 
 
-
+//Allows us to get user information about the person who is logged in using a hash value
 
                 String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name)";
 
                 APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
                 apiHelper.getRequest(MainActivity.this, url, new ApiListener() {
 
+
                     @Override
                     public void onApiSuccess(ApiResponse apiResponse) {
                         Intent i= new Intent(getApplicationContext(),LinkedIn_data.class);
                         startActivityForResult(i,2);
 
-
                     }
-
 
                     @Override
                     public void onApiError(LIApiError liApiError) {
@@ -89,27 +93,20 @@ public class MainActivity extends AppCompatActivity {
 
                 });
 
-
-
             }
         });
-
-
-
-
-
-
 
 
     }
 
 
     private static Scope buildScope() {
-
         //return Scope.build(Scope.R_BASICPROFILE, Scope.W_SHARE);
         return Scope.build(Scope.R_BASICPROFILE, Scope.R_EMAILADDRESS);
 
     }
+
+    //assigns us a session manager as we are logged into LinkedIn
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -118,16 +115,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, LinkedIn_data.class);
         startActivity(intent);
 
-
-
-
     }
-
-
-
-
-
-
 
 
     }

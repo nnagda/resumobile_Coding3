@@ -1,3 +1,5 @@
+//Shows the data gathered from the LinkedIn app
+
 package acad277.stanfield.ben.resumobile;
 
 import android.app.ProgressDialog;
@@ -39,9 +41,11 @@ import acad277.stanfield.ben.resumobile.model.jobModel;
 
 public class LinkedIn_data extends AppCompatActivity {
 
+
     public static final String COVER_DETAILS=Cover_Letter_Edit.COVER_LETTER;
     private static final String host = "api.linkedin.com";
     private ProgressDialog progress;
+    //details that we would like from LinkedIn
     private static final String url =
             "https://" + host + "/v1/people/~:" +
                     "(email-address,formatted-name,positions,location:(name),public-profile-url,headline,summary)";
@@ -60,6 +64,7 @@ public class LinkedIn_data extends AppCompatActivity {
     TextView publicProfile;
     TextView headline;
 
+
     private ArrayList<JobDetails> arrayJob;
     private JobAdapter jobAdapter;
     private jobModel myJobModel;
@@ -70,6 +75,7 @@ public class LinkedIn_data extends AppCompatActivity {
 
 
 
+    //progress message as data from linkedIn loads in
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         progress= new ProgressDialog(this);
@@ -88,13 +94,12 @@ public class LinkedIn_data extends AppCompatActivity {
         //Setting up the list view
         arrayJob = jobModel.get(this).getJobs();
 
-
         editCoverLetter=(Button)findViewById(R.id.buttonEditCoverLetter);
         editJob=(Button)findViewById(R.id.buttonEditJobs);
         next=(Button)findViewById(R.id.buttonNext);
 
 
-        //API will fill these out
+        //Relationships between the code and the widgets
         name=(TextView)findViewById(R.id.TextView_Name);
         country=(TextView)findViewById(R.id.TextView_Country);
         coverLetter=(TextView)findViewById(R.id.TextView_coverLetter);
@@ -109,19 +114,19 @@ public class LinkedIn_data extends AppCompatActivity {
         //Adding to the array // test values
         Intent i= new Intent(getApplicationContext(), Job_edit.class);
 
+        //Intent to send information from the cover lette calss
         Intent ia= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
         ia.putExtra(COVER_DETAILS,testCoverLetterDetails);
 
+        //sets the cover letter text to the Cover Letter Details test
         String coverLetterString=(String)coverLetter.getText();
         testCoverLetterDetails.setCoverLetterText(coverLetterString);
+
 
         jobAdapter = new JobAdapter(arrayJob);
         jobs.setAdapter(jobAdapter);
 
         testCoverLetterModel= coverLetterModel.get(this);
-
-
-
 
 
         // sends an Intent with the cover letter Information to the Cover_Letter_Edit class
@@ -130,7 +135,6 @@ public class LinkedIn_data extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(getApplicationContext(),Cover_Letter_Edit.class);
                 i.putExtra(COVER_DETAILS,testCoverLetterDetails);
-
                 String coverLetterString=(String)coverLetter.getText();
                 testCoverLetterDetails.setCoverLetterText(coverLetterString);
 
@@ -139,7 +143,7 @@ public class LinkedIn_data extends AppCompatActivity {
 
         });
 
-
+        //sents it to the edit job class
         editJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +153,7 @@ public class LinkedIn_data extends AppCompatActivity {
 
         });
 
+        //sends it to the next class
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,6 +165,7 @@ public class LinkedIn_data extends AppCompatActivity {
 
     }
 
+    //Linkedin Json data
     public void linkededinApiHelper(){
         Log.d("URL is ", "1");
         APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
@@ -189,48 +195,44 @@ public class LinkedIn_data extends AppCompatActivity {
         try {
             Log.d("json is ", response.toString());
 
+            //get data from Json
+            //sets it to the singleton array results
 
+            //LinedIn profile link
             publicProfile.setText(response.get("publicProfileUrl").toString());
             basicDetailModel.get(getApplicationContext()).setPublicProfile(response.get("publicProfileUrl").toString());
 
+            //headline
             headline.setText(response.get("headline").toString());
             basicDetailModel.get(getApplicationContext()).setHeadline(response.get("headline").toString());
 
+            //nested json value : Location
             JSONObject locationObject= response.getJSONObject("location");
             String locationString = locationObject.getString("name");
 
             Log.d("location is: ", locationString);
             country.setText(locationString);
 
-
             basicDetailModel.get(getApplicationContext()).setCountry(locationString);
 
-            coverLetter.setText(response.get("summary").toString());
-
-            //response.get("emailAddress").toString();
-            testCoverLetterModel.setCoverLetterText(response.get("emailAddress").toString());
-
-
-
-
+            //cover letter
             testCoverLetterDetails.setCoverLetterText(response.get("summary").toString());
             testCoverLetterModel.setCoverLetterText(response.get("summary").toString());
+            coverLetter.setText(response.get("summary").toString());
 
-//          coverLetter.setText(response.get("summary").toString());
 
-
+            //email
             testBasicDetails.setEmail(response.get("emailAddress").toString());
             basicDetailModel.get(getApplicationContext()).setEmail(response.get("emailAddress").toString());
 
-
-
+            //formatted name
             TextView_Name.setText(response.get("formattedName").toString());
             testBasicDetails.setName(response.get("formattedName").toString());
             basicDetailModel.get(getApplicationContext()).setName(response.get("formattedName").toString());
 
 
 
-//            country.setText(response.get("positions").toString());
+//           populates the list view and the singleton Job model
             String positionString =response.get("positions").toString();
             JSONObject positionJSON = new JSONObject(positionString);
             JSONArray valuesArray = positionJSON.getJSONArray("values");
@@ -254,13 +256,10 @@ public class LinkedIn_data extends AppCompatActivity {
 
             String values = positionJSON.getString("values");
 
-
+//updates the ilst view
             Log.d("the summary is ", values);
             jobAdapter.notifyDataSetChanged();
-//            testBasicDetails.setName(response.get("numConnections").toString());
 
-//            Picasso.with(this).load(response.getString("pictureUrl"))
-//                    .into(profile_picture);
 
         } catch (Exception e){
             e.printStackTrace();
@@ -270,7 +269,7 @@ public class LinkedIn_data extends AppCompatActivity {
 
 
 
-
+//loads data from the list view of Job array
     private class JobAdapter extends ArrayAdapter<JobDetails>{
         //ArrayList<JobDetails> arrayJob= new ArrayList<>();
 
@@ -326,8 +325,6 @@ public class LinkedIn_data extends AppCompatActivity {
 
                 coverLetterModel.get(getApplicationContext()).setCoverLetterText(testCoverLetterDetails.getCoverLetterText());
                 jobAdapter.notifyDataSetChanged();
-
-
 
             }
 

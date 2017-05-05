@@ -1,5 +1,7 @@
 package acad277.stanfield.ben.resumobile;
 
+//adds a job
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,6 +36,7 @@ public class Job_add extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_add);
 
+        //details one will enter about their new job
         companyName=(EditText) findViewById(R.id.editCompanyName);
         positionName=(EditText) findViewById(R.id.editPositionName);
         positionDescription=(EditText) findViewById(R.id.editPositionDescription);
@@ -41,12 +44,9 @@ public class Job_add extends AppCompatActivity {
         save=(Button) findViewById(R.id.buttonSaveJob);
         goBack=(Button)findViewById(R.id.buttonGoBack);
 
+        //loads already exisiting information about the Job details into the list view
         myJobModel=jobModel.get(this);
         arrayJob = jobModel.get(this).getJobs();
-
-
-
-
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +60,8 @@ public class Job_add extends AppCompatActivity {
                 testJob.setJobName(companyName.getText().toString());
                 testJob.setPositionDescrption(positionDescription.getText().toString());
                 testJob.setPositionName(positionName.getText().toString());
+
+                //adds this new job to the job array
                 arrayJob.add(testJob);
 
 
@@ -80,6 +82,8 @@ public class Job_add extends AppCompatActivity {
 
 
     }
+
+    //populates the list view
     private class JobAdapter extends ArrayAdapter<JobDetails> {
         ArrayList<JobDetails> arrayJob= new ArrayList<>();
 

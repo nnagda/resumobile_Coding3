@@ -1,5 +1,6 @@
-package acad277.stanfield.ben.resumobile;
+//Delete the job from the job array
 
+package acad277.stanfield.ben.resumobile;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,13 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 import acad277.stanfield.ben.resumobile.model.JobDetails;
 import acad277.stanfield.ben.resumobile.model.jobModel;
 
 public class Job_Delete extends AppCompatActivity {
+    //intializing buttons
     Button save;
     Button goBack;
     ListView jobs;
@@ -32,15 +33,16 @@ public class Job_Delete extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job__delete);
 
+        //buttons that will be used in this class
         save=(Button) findViewById(R.id.buttonSaveJobs);
         goBack=(Button)findViewById(R.id.buttonGoBack);
         jobs=(ListView)findViewById(R.id.list_jobs);
-
 
         myJobModel=jobModel.get(this);
         arrayJob = jobModel.get(this).getJobs();
 
 
+        //initlaizes the list view array
         jobAdapter = new JobAdapter(arrayJob);
         jobs.setAdapter(jobAdapter);
 
@@ -60,15 +62,11 @@ public class Job_Delete extends AppCompatActivity {
 
 
 
-
+//if no changes were made, maintain that. If changes were made save those too
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
-
-
-
 
             }
         });
@@ -81,6 +79,8 @@ public class Job_Delete extends AppCompatActivity {
         });
 
     }
+
+    //populates the job array with the exisitng jobs
     private class JobAdapter extends ArrayAdapter<JobDetails> {
         ArrayList<JobDetails> arrayJob= new ArrayList<>();
 

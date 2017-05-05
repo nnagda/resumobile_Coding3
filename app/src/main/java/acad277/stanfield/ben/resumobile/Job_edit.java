@@ -73,7 +73,7 @@ public class Job_edit extends AppCompatActivity {
         Log.d("INDICATOR in onCreate: ", Integer.toString(indicator));
 
 
-
+//sends this to the respective classes
 
         addJob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,12 +105,14 @@ public class Job_edit extends AppCompatActivity {
 
 
     }
+
+    //populates the job array
     private class JobAdapter extends ArrayAdapter<JobDetails> {
-        //ArrayList<JobDetails> arrayJob;
+
 
         public JobAdapter(ArrayList<JobDetails> arrayJob){
             super(getApplicationContext(), 0, arrayJob);
-            //this.arrayJob = arrayJob;
+
 
         }
 
@@ -142,6 +144,8 @@ public class Job_edit extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        //based on the page the user is coming from, the job array will update accordingly
 
 
         if (requestCode == 5) {
