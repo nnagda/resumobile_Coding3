@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <ImageView
         android:layout_width="match_parent"
@@ -34,8 +39,9 @@
         android:id="@+id/TextView_Name"
         android:text="Ben Stanfield"
         android:gravity="center"
-        android:textSize="25dp"
+        android:textSize="35dp"
         android:textColor="@color/colorPrimary"
+        android:layout_marginTop="15dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -44,11 +50,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#333333"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:gravity="center"
             android:layout_marginTop="5dp"
             android:id="@+id/TextView_Headline"
             android:text="Headline text"/>
+
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:textSize="20dp"
+            android:layout_marginTop="30dp"
+        android:id="@+id/TextViewFake"
+        android:text="This will be my cover letter, if I ever write one! Really... how important *are* cover letters? Personally, I think they're a load of crap. Thanks for listening!"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:textSize="20dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/TextView_coverLetter"
+            android:text="This will be my cover letter, if I ever write one! Really... how important *are* cover letters? Personally, I think they're a load of crap. Thanks for listening!"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -62,51 +87,12 @@
             android:gravity="center"
             android:layout_alignParentStart="true" />
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Country:"
-        android:id="@+id/textView2"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/TextView_Country"
-        android:text="LinkedIn_Location"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cover Letter"
-        android:id="@+id/textView3"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_red_dark"
-        android:id="@+id/TextView_coverLetter"
-        android:text="Cover Letter Comes Here"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Public Profile"
-        android:id="@+id/textView10"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_red_dark"
-        android:id="@+id/TextView_publicProfile"
-        android:text="LinkedIn link comes here"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Job Experience"
+        android:text="JOB EXPERIENCE"
+        android:letterSpacing=".05"
+        android:textSize="20dp"
         android:id="@+id/textView4"/>
 
     <Space
@@ -116,12 +102,34 @@
     <ListView
         android:id="@+id/ListView_jobs"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
-        android:background="#eeeeee"
+        android:layout_height="550dp"
+        android:background="#e7e7e7"
         android:padding="0dp"
-        android:layout_margin="15dp">
+        android:layout_margin="0dp">
     </ListView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TextView_Country"
+            android:text="LinkedIn_Location"
+            android:textColor="#565656"
+            android:textSize="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Public Profile"
+            android:id="@+id/textView10"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:id="@+id/TextView_publicProfile"
+            android:text="LinkedIn link comes here"/>
 
 
     <RelativeLayout
@@ -138,14 +146,23 @@
 
         </LinearLayout>
 
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Data"
+            android:id="@+id/buttonEdit"
+            android:textColor="#ffffff"
+            android:backgroundTint="#f79146"
+            android:padding="@dimen/button_padding"
+            />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Log out"
             android:id="@+id/buttonLogout"
-            android:layout_below="@id/buttonSplit"
-            android:textColor="#ffffff"
-            android:backgroundTint="#f79146"
+            android:layout_below="@id/buttonEdit"
             android:padding="@dimen/button_padding"
             />
 
@@ -155,5 +172,5 @@
         android:layout_width="match_parent"
         android:layout_height="20dp" />
     </LinearLayout>
-
-</LinearLayout>
+        </LinearLayout>
+</ScrollView>
