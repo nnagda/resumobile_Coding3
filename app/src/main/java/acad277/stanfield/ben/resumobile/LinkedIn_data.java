@@ -211,12 +211,14 @@ public class LinkedIn_data extends AppCompatActivity {
             testCoverLetterModel.setCoverLetterText(response.get("emailAddress").toString());
 
 
-            String test=coverLetter.getText().toString();
 
-            testCoverLetterDetails.setCoverLetterText(test);
-            testCoverLetterModel.setCoverLetterText(test);
+
+            testCoverLetterDetails.setCoverLetterText(response.get("summary").toString());
+            testCoverLetterModel.setCoverLetterText(response.get("summary").toString());
 
 //          coverLetter.setText(response.get("summary").toString());
+
+
             testBasicDetails.setEmail(response.get("emailAddress").toString());
             basicDetailModel.get(getApplicationContext()).setEmail(response.get("emailAddress").toString());
 

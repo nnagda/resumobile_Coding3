@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onApiSuccess(ApiResponse apiResponse) {
-                        Toast.makeText(getApplicationContext(),"yes!",Toast.LENGTH_SHORT).show();
                         Intent i= new Intent(getApplicationContext(),LinkedIn_data.class);
                         startActivityForResult(i,2);
 
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onApiError(LIApiError liApiError) {
-                        Toast.makeText(getApplicationContext(),"no!",Toast.LENGTH_SHORT).show();
+
                     }
 
 

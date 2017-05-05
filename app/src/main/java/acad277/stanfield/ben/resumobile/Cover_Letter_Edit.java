@@ -24,6 +24,7 @@ public class Cover_Letter_Edit extends AppCompatActivity {
     private coverLetterModel testCoverLetterModel;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

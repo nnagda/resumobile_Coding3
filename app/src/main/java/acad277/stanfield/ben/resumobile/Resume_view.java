@@ -36,6 +36,7 @@ public class Resume_view extends AppCompatActivity {
 
 
     Button logout;
+
     TextView name;
     TextView country;
     TextView education;
@@ -76,6 +77,7 @@ public class Resume_view extends AppCompatActivity {
 
 
         logout=(Button)findViewById(R.id.buttonLogout);
+
 
         //API will fill these out
         name=(TextView)findViewById(R.id.TextView_Name);
@@ -139,6 +141,8 @@ public class Resume_view extends AppCompatActivity {
 
 
 
+
+
     }
     private class JobAdapter extends ArrayAdapter<JobDetails>{
         //ArrayList<JobDetails> arrayJob= new ArrayList<>();
@@ -181,9 +185,13 @@ public class Resume_view extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
         super.onActivityResult(requestCode, resultCode, data);
 
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+
 
             Uri uri = data.getData();
 
