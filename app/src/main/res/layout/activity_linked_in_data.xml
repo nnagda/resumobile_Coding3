@@ -21,6 +21,16 @@
     </RelativeLayout>
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Does everything look right?"
+        android:textSize="25dp"
+        android:textColor="#333333"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/textViewX"
+        android:textStyle="normal|bold" />
+
+    <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Name:"
@@ -31,7 +41,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/TextView_Name"
         android:text="LinkedInName"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="#3f51b5"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -46,7 +56,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/TextView_Email"
         android:text="LinkedIn_Email"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="#3f51b5"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -62,14 +72,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/TextView_Country"
         android:text="LinkedIn_Location"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="#3f51b5"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cover Letter"
+            android:text="Personal Summary"
             android:id="@+id/textView3"/>
 
     <ScrollView
@@ -79,7 +89,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="#3f51b5"
         android:id="@+id/TextView_coverLetter"
         android:text="Cover Letter Comes Here"
         android:maxLines = "2"
@@ -95,7 +105,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="#3f51b5"
             android:id="@+id/TextView_publicProfile"
             android:text="LinkedIn link comes here"/>
 
@@ -109,7 +119,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="#3f51b5"
             android:id="@+id/TextView_Headline"
             android:text="Headline text"/>
 
@@ -131,7 +141,7 @@
     <ListView
         android:id="@+id/ListView_jobs"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:background="#e3e3e3"
         android:padding="0dp"
         android:layout_margin="15dp">
@@ -153,7 +163,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="EDIT COVER LETTER"
+                android:text="EDIT PERSONAL SUMMARY"
                 android:id="@+id/buttonEditCoverLetter"
                 android:layout_weight="1"
                 android:padding="@dimen/button_padding"
@@ -162,7 +172,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="EDIT JOBS"
+                android:text="EDIT JOBS LIST"
                 android:id="@+id/buttonEditJobs"
                 android:layout_weight="1"
                 android:padding="@dimen/button_padding"
@@ -172,7 +182,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NEXT"
+            android:text="YES, LET'S KEEP GOING"
             android:id="@+id/buttonNext"
             android:layout_below="@id/buttonSplit"
             android:textColor="#ffffff"
