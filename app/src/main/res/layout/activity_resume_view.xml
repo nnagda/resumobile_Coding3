@@ -43,7 +43,8 @@
         android:textColor="@color/colorPrimary"
         android:layout_marginTop="15dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textStyle="normal|bold" />
 
 
         <TextView
@@ -63,6 +64,7 @@
         android:textColor="#333333"
         android:textSize="20dp"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
         android:id="@+id/TextView_coverLetter"
         android:text="This will be my cover letter, if I ever write one! Really... how important *are* cover letters? Personally, I think they're a load of crap. Thanks for listening!"/>
 
@@ -84,7 +86,8 @@
         android:text="JOB EXPERIENCE"
         android:letterSpacing=".025"
         android:textSize="20dp"
-        android:id="@+id/textView4"/>
+        android:id="@+id/textView4"
+        android:textStyle="normal|bold" />
 
     <Space
         android:layout_width="match_parent"
@@ -106,7 +109,8 @@
             android:letterSpacing=".025"
             android:textSize="20dp"
             android:layout_marginTop="20dp"
-            android:id="@+id/textView11"/>
+            android:id="@+id/textView11"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,7 +129,8 @@
             android:letterSpacing=".025"
             android:textSize="20dp"
             android:layout_marginTop="20dp"
-            android:id="@+id/textView10"/>
+            android:id="@+id/textView10"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="match_parent"
