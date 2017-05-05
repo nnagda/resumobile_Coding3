@@ -103,7 +103,6 @@ public class Resume_view extends AppCompatActivity {
 
         //Sets the fields to the API data
         name.setText(testBasicDetailModel.getName());
-        email.setText(testBasicDetailModel.getEmail());
         country.setText(testBasicDetailModel.getCountry());
         headline.setText(testBasicDetailModel.getHeadline());
         publicProfile.setText(testBasicDetailModel.getPublicProfile());
