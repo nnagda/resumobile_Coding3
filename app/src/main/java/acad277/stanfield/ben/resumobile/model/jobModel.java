@@ -4,6 +4,9 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
+//the singleton array for job arrays
+//as it moves along the classes, make sures the class is not intialized
+
 /**
  * Created by nayleenagda on 4/17/17.
  */

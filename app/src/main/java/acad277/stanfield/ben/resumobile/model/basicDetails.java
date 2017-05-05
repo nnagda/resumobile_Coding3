@@ -6,6 +6,10 @@ import java.io.Serializable;
  * Created by nayleenagda on 4/16/17.
  */
 
+
+
+//model class with the relevant details
+
 public class basicDetails implements Serializable {
     String name;
     String location;

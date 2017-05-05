@@ -1,4 +1,5 @@
 package acad277.stanfield.ben.resumobile;
+//Final view of the resume
 
 import android.app.Activity;
 import android.content.Intent;
@@ -71,11 +72,6 @@ public class Resume_view extends AppCompatActivity {
         //Setting up the list view
         arrayJob = jobModel.get(this).getJobs();
 
-
-
-
-
-
         logout=(Button)findViewById(R.id.buttonLogout);
 
 
@@ -90,18 +86,15 @@ public class Resume_view extends AppCompatActivity {
         publicProfile= (TextView)findViewById(R.id.TextView_publicProfile);
         headline=(TextView)findViewById(R.id.TextView_Headline);
 
-
-
         imageView=(ImageView)findViewById(R.id.imageView_selectPicture);
 
+        //Intializing singelton arrays
         jobAdapter = new JobAdapter(arrayJob);
         jobs.setAdapter(jobAdapter);
-
-
         testBasicDetailModel= basicDetailModel.get(this);
         testCoverLetterModel=coverLetterModel.get(this);
 
-        //Sets the fields to the API data
+        //Sets the fields to the Linkd In API data
         name.setText(testBasicDetailModel.getName());
         country.setText(testBasicDetailModel.getCountry());
         headline.setText(testBasicDetailModel.getHeadline());
@@ -109,6 +102,7 @@ public class Resume_view extends AppCompatActivity {
         coverLetter.setText(testCoverLetterModel.getCoverLetterText());
 
 
+        //saves image the user selected
                 Intent intent = new Intent();
                 // Show only images, no videos or anything else
                 intent.setType("image/*");
@@ -118,6 +112,7 @@ public class Resume_view extends AppCompatActivity {
 
 
 
+        //loads it from shared preferences
         SharedPreferences shre = PreferenceManager.getDefaultSharedPreferences(this);
         String previouslyEncodedImage = shre.getString("image_data", "");
 
@@ -143,8 +138,10 @@ public class Resume_view extends AppCompatActivity {
 
 
     }
+
+    //populates the list view with the job array
     private class JobAdapter extends ArrayAdapter<JobDetails>{
-        //ArrayList<JobDetails> arrayJob= new ArrayList<>();
+
 
         public JobAdapter(ArrayList<JobDetails> arrayJob){
             super(getApplicationContext(), 0, arrayJob);
@@ -160,13 +157,10 @@ public class Resume_view extends AppCompatActivity {
 
             JobDetails testJob = arrayJob.get(position);
 
-
-
             //references to each view within the list row
             TextView jobName = (TextView) convertView.findViewById(R.id.textView_jobName);
             TextView positionName = (TextView) convertView.findViewById(R.id.textView_position);
             TextView jobDescription  =(TextView) convertView.findViewById(R.id.textView_description);
-
 
 
             // loads the data from the object into the view
@@ -182,6 +176,8 @@ public class Resume_view extends AppCompatActivity {
 
     }
 
+    //gets the image from shared perferences
+    //loads it into image view
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -199,6 +195,7 @@ public class Resume_view extends AppCompatActivity {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
 
+                //gets the image from shares preferences
                 imageView.setImageBitmap(bitmap);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();

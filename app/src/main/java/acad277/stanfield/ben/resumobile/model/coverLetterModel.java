@@ -6,6 +6,9 @@ import android.content.Context;
  * Created by nayleenagda on 5/1/17.
  */
 
+//the singleton array for cover letter
+//as it moves along the classes, make sures the class is not intialized
+
 public class coverLetterModel {
     private static coverLetterModel testCoverLetterModel;
     private String coverLetterText;

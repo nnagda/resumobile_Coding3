@@ -3,10 +3,12 @@ package acad277.stanfield.ben.resumobile.model;
 import android.content.Context;
 
 import java.util.ArrayList;
-
 /**
  * Created by nayleenagda on 4/28/17.
  */
+
+//the singleton array for job details
+    //as it moves along the classes, make sures the class is not intialized
 
 public class basicDetailModel {
     private Context context;

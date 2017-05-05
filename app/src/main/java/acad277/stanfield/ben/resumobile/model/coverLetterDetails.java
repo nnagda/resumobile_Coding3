@@ -6,6 +6,9 @@ import java.io.Serializable;
  * Created by nayleenagda on 4/16/17.
  */
 
+
+
+
 public class coverLetterDetails implements Serializable {
     String coverLetterText;
 

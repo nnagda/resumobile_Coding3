@@ -1,5 +1,7 @@
 package acad277.stanfield.ben.resumobile;
 
+//This allows the user to select an image
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,24 +18,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
 
 import acad277.stanfield.ben.resumobile.model.basicDetailModel;
-import acad277.stanfield.ben.resumobile.model.basicDetails;
-import acad277.stanfield.ben.resumobile.model.jobModel;
-
-import static android.R.attr.baseline;
-import static android.R.attr.bitmap;
-import static android.R.attr.data;
 
 
 public class Preferences extends AppCompatActivity {
 
+    //intialize the buttons
     Button selectPic;
     Button galleryPic;
     Button Next;
@@ -50,11 +46,11 @@ public class Preferences extends AppCompatActivity {
 
         selectPic=(Button)findViewById(R.id.button_selectPic);
         Next=(Button)findViewById(R.id.button_next);
-        //Next=(Button)findViewById(R.id.Button_Next);
         imageView = (ImageView) findViewById(R.id.imageView_selectPicture);
 
 
 
+        //allows the user to select an image from their gallery
 
         selectPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +77,8 @@ public class Preferences extends AppCompatActivity {
 
 
 
-
+    // save the image so when they come back the second time, they remember the image they had put for Linkedin
+        //shared perferences
 
         SharedPreferences shre = PreferenceManager.getDefaultSharedPreferences(this);
         String previouslyEncodedImage = shre.getString("image_data", "");
@@ -108,7 +105,7 @@ public class Preferences extends AppCompatActivity {
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
-
+                //saves the image to the image view
                 imageView.setImageBitmap(bitmap);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
