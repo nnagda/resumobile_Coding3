@@ -41,25 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         login=(Button)findViewById(R.id.buttonSignIn);
-        Override=(Button)findViewById(R.id.buttonOverride);
-
-
-        Override.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //testBasicDetailModel.setName("hello");
-                //basicDetailModel.get(getApplicationContext()).setName("hello");
-
-                Intent i= new Intent(getApplicationContext(),Preferences.class);
-                startActivityForResult(i,3);
-                basicDetailModel.get(getApplicationContext()).setName("hello");
-
-
-
-
-            }
-        });
 
         login.setOnClickListener(new View.OnClickListener() {
 
