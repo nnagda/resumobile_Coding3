@@ -33,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="310dp"
         android:id="@+id/list_jobs"
+        android:background="#e3e3e3"
         android:layout_marginTop="20dp">
     </ListView>
 
