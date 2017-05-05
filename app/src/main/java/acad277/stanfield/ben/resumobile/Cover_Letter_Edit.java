@@ -11,7 +11,9 @@ import android.widget.Toast;
 import java.io.Serializable;
 
 
+import acad277.stanfield.ben.resumobile.model.basicDetailModel;
 import acad277.stanfield.ben.resumobile.model.coverLetterDetails;
+import acad277.stanfield.ben.resumobile.model.coverLetterModel;
 
 public class Cover_Letter_Edit extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class Cover_Letter_Edit extends AppCompatActivity {
     Button clearText;
     EditText coverLetterText;
     public static final String COVER_LETTER="COVER_LETTER";
+    private coverLetterModel testCoverLetterModel;
 
 
     @Override
@@ -29,6 +32,10 @@ public class Cover_Letter_Edit extends AppCompatActivity {
         save=(Button)findViewById(R.id.buttonSaveCoverLetter);
         clearText=(Button)findViewById(R.id.button_clearText);
         coverLetterText=(EditText)findViewById(R.id.EditText_CoverLetter);
+
+        testCoverLetterModel= coverLetterModel.get(this);
+
+
 
 
 
@@ -63,11 +70,15 @@ public class Cover_Letter_Edit extends AppCompatActivity {
                 String test=coverLetterText.getText().toString();
                 testCoverLetterDetails.setCoverLetterText(test);
 
+                testCoverLetterModel.setCoverLetterText(test);
+
+
+
                 setResult(RESULT_OK,i);
 
 
 
-                //Toast.makeText(getApplicationContext(),testCoverLetterDetails.getCoverLetterText(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),testCoverLetterModel.getCoverLetterText(),Toast.LENGTH_SHORT).show();
 
 
 

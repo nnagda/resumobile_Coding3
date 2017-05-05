@@ -63,6 +63,7 @@ public class LinkedIn_data extends AppCompatActivity {
     private ArrayList<JobDetails> arrayJob;
     private JobAdapter jobAdapter;
     private jobModel myJobModel;
+    private coverLetterModel testCoverLetterModel;
 
     coverLetterDetails testCoverLetterDetails= new coverLetterDetails();
     basicDetails testBasicDetails= new basicDetails();
@@ -116,6 +117,10 @@ public class LinkedIn_data extends AppCompatActivity {
 
         jobAdapter = new JobAdapter(arrayJob);
         jobs.setAdapter(jobAdapter);
+
+        testCoverLetterModel= coverLetterModel.get(this);
+
+
 
 
 
@@ -202,7 +207,16 @@ public class LinkedIn_data extends AppCompatActivity {
 
             coverLetter.setText(response.get("summary").toString());
 
-//            coverLetter.setText(response.get("summary").toString());
+            //response.get("emailAddress").toString();
+            testCoverLetterModel.setCoverLetterText(response.get("emailAddress").toString());
+
+
+            String test=coverLetter.getText().toString();
+
+            testCoverLetterDetails.setCoverLetterText(test);
+            testCoverLetterModel.setCoverLetterText(test);
+
+//          coverLetter.setText(response.get("summary").toString());
             testBasicDetails.setEmail(response.get("emailAddress").toString());
             basicDetailModel.get(getApplicationContext()).setEmail(response.get("emailAddress").toString());
 

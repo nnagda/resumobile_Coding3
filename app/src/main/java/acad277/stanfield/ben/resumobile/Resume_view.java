@@ -154,10 +154,12 @@ public class Resume_view extends AppCompatActivity {
             TextView jobDescription  =(TextView) convertView.findViewById(R.id.textView_description);
 
 
+
             // loads the data from the object into the view
             jobName.setText(testJob.getJobName());
             positionName.setText(testJob.getPositionName());
             jobDescription.setText(testJob.getPositionDescrption());
+
 
             return convertView;
         }
