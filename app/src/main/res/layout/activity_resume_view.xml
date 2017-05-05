@@ -63,7 +63,7 @@
         android:textColor="#333333"
         android:textSize="20dp"
             android:layout_marginTop="30dp"
-        android:id="@+id/TextViewFake"
+        android:id="@+id/TextView_coverLetter"
         android:text="This will be my cover letter, if I ever write one! Really... how important *are* cover letters? Personally, I think they're a load of crap. Thanks for listening!"/>
 
         <TextView
